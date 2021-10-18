@@ -1,20 +1,21 @@
+// See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-    "name": "Laravel",
-    "dockerComposeFile": ["../docker-compose.yml"],
+    "name": "Remote-dev Project",
+    "dockerComposeFile": ["docker-compose.yml"],
+    "workspaceFolder": "/workspace",
     "service": "app",
-    "workspaceFolder": "/var/www/html",
-    "settings": {
-        "terminal.integrated.shell.linux": null
-    },
     "extensions": [
-        "mikestead.dotenv",
-        "felixfbecker.php-debug",
-        "neilbrayfield.php-docblocker",
-        "bmewburn.vscode-intelephense-client",
-        "onecentlin.laravel5-snippets",
-        "onecentlin.laravel-blade",
-        "ryannaddy.laravel-artisan",
-        "mhutchie.git-graph"
-    ],
-    "remoteUser": "www-data"
+		"editorconfig.editorconfig"
+	],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [],
+
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": "composer install && npm install && composer run post-root-package-install && composer run post-create-project-cmd",
+
+    // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode"
 }
