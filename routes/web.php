@@ -11,6 +11,10 @@
 |
 */
 
+use App\Http\Controllers\TwitterLoginController;
+Route::get('auth/login/twitter', [TwitterLoginController::class, 'redirectToProvider']);
+Route::get('auth/twitter/callback',[TwitterLoginController::class, 'handleProviderCallback']);
+
 Route::get('/', function () {
     return view('index');
 });

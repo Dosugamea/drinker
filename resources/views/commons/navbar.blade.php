@@ -40,7 +40,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="#" class="btn btn-secondary">Twitterでログイン</a></li>
+                <li class="nav-item"><a href="/auth/login/twitter" class="btn btn-secondary">Twitterでログイン</a></li>
             </ul>
         </div>
     </nav>
