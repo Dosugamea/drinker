@@ -14,7 +14,7 @@
         @include('commons.header')
         {{-- メインコンテンツ --}}
         <main>
-            <div class="container">
+            <div class="container-lg mt-4">
                 {{-- エラーメッセージ --}}
                 @include('commons.error_messages')
 
