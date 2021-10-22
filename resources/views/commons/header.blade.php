@@ -43,7 +43,13 @@
                 </li>
             </ul>
             <ul class="navbar-nav">
+                @if (Auth::check())
+                <li class="nav-item mr-2"><a href="/auth/login/twitter" class="btn btn-info">試飲記録</a></li>
+                <li class="nav-item mr-2"><a href="/auth/login/twitter" class="btn btn-info">購買記録</a></li>
+                <li class="nav-item"><img src="https://placehold.jp/35x35.jpg" alt="..." class="rounded-circle"></li>
+                @else
                 <li class="nav-item"><a href="/auth/login/twitter" class="btn btn-secondary">Twitterでログイン</a></li>
+                @endif
             </ul>
         </div>
     </nav>
