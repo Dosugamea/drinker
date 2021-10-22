@@ -14,7 +14,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile.reviews.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.reviews.create');
     }
 
     /**
@@ -46,7 +46,8 @@ class ReviewController extends Controller
      */
     public function show(review $review)
     {
-        //
+        // TODO: レビューから飲み物情報を取得して /beverages/{id}/reviews/{review}に飛ばす
+        return view('beverage.reviews.show');
     }
 
     /**

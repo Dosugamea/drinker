@@ -14,7 +14,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile.logs.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class LogController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.logs.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class LogController extends Controller
      */
     public function show(log $log)
     {
-        //
+        return view('profile.logs.show');
     }
 
     /**
