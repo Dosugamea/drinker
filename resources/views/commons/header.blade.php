@@ -1,19 +1,21 @@
-<header class="mb-4">
+<header>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <a class="navbar-brand" href="/">Drinker</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar" aria-expanded="true">
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar"
+            aria-expanded="true">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse show" id="nav-bar" style="">
+        <div class="navbar-collapse collapse show" id="nav-bar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item mx-4">
-                    <form class="d-flex">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <button class="btn btn-secondary" type="submit">Search</button>
+                    <form class="d-flex my-auto">
+                        <input class="form-control my-auto" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-auto" type="submit">Search</button>
                     </form>
                 </li>
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle" id="btnCategory" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">カテゴリ</a>
+                <li class="nav-item dropdown mx-2 my-auto">
+                    <a class="nav-link dropdown-toggle" id="btnCategory" data-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="true" aria-expanded="false">カテゴリ</a>
                     <div class="dropdown-menu" aria-labelledby="btnCategory">
                         <a class="dropdown-item" href="#">水飲料</a>
                         <a class="dropdown-item" href="#">お茶飲料</a>
@@ -30,8 +32,9 @@
                         <a class="dropdown-item" href="#">ネタ枠</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown mx-2">
-                    <a class="nav-link dropdown-toggle" id="btnRanking" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">ランキング</a>
+                <li class="nav-item dropdown mx-2  my-auto">
+                    <a class="nav-link dropdown-toggle" id="btnRanking" data-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="true" aria-expanded="false">ランキング</a>
                     <div class="dropdown-menu" aria-labelledby="btnRanking">
                         <a class="dropdown-item" href="#">総合数</a>
                         <a class="dropdown-item" href="#">試飲記録数</a>
