@@ -35,7 +35,7 @@ Route::get('/', function () {
 Route::redirect('/profile', '/');
 
 // ランキングページ
-Route::group(['prefix' => 'ranking/', 'as' => 'rankings.'], function () {
+Route::group(['prefix' => 'rankings/', 'as' => 'rankings.'], function () {
     Route::get('reviews', 'RankingController@reviews')->name('reviews');
     Route::get('logs', 'RankingController@logs')->name('logs');
     Route::get('totals', 'RankingController@totals')->name('totals');
@@ -54,13 +54,13 @@ Route::group(['prefix' => 'beverages/{beverage_id}', 'as' => 'beverages.'], func
     // 質問
     Route::resource(
         '/questions',
-        BeverageQuestionController::class,
+        'BeverageQuestionController',
         ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
     );
     // 質問への回答
     Route::resource(
         '/questions/{question_id}/answers',
-        BeverageAnswerController::class,
+        'BeverageAnswerController',
         ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
     );
 });
@@ -78,13 +78,13 @@ Route::middleware('auth')->group(function () {
         // レビュー投稿ページ
         Route::resource(
             'reviews',
-            ReviewController::class,
+            'ReviewController',
             ['only' => ['index', 'create', 'store', 'show', 'edit']]
         );
         // 記録投稿ページ
         Route::resource(
             'logs',
-            LogController::class,
+            'LogController',
             ['only' => ['index', 'create', 'store', 'show', 'edit']]
         );
         // ベストドリンク/ベストレビューページ
