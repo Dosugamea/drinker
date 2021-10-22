@@ -24,7 +24,7 @@
 
     {{-- カード挿入予定地 --}}
     <div class="row justify-content-around">
-        @yield('content')
+        @yield('cards')
     </div>
 
     {{-- ページネーション予定地 --}}
