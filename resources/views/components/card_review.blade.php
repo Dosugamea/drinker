@@ -41,5 +41,5 @@
     <h6 class="mx-2 my-1">
         レビュー本文
     </h6>
-    <h6 class="text-right mr-2">全文を見る</h6>
+    <h6 class="text-right mr-2"><a href="{{ route('beverages.reviews', ['beverage_id'=>'1']) }}">全文を見る</a></h6>
 </div>

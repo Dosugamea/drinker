@@ -17,4 +17,14 @@ class BeverageController extends Controller
         return view('beverages.show');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function reviews()
+    {
+        // TODO: Add beverage model
+        return view('beverages.reviews.index');
+    }
 }

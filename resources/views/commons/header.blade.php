@@ -17,6 +17,9 @@
                     <a class="nav-link dropdown-toggle" id="btnCategory" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="true" aria-expanded="false">カテゴリ</a>
                     <div class="dropdown-menu" aria-labelledby="btnCategory">
+                        @for ($i = 0; $i < 14; $i++)
+                        {!! link_to_route('search.search', '紅茶飲料', [], ['class' => 'dropdown-item']) !!}
+                        @endfor
                         <a class="dropdown-item" href="#">水飲料</a>
                         <a class="dropdown-item" href="#">お茶飲料</a>
                         <a class="dropdown-item" href="#">珈琲飲料</a>
@@ -36,9 +39,9 @@
                     <a class="nav-link dropdown-toggle" id="btnRanking" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="true" aria-expanded="false">ランキング</a>
                     <div class="dropdown-menu" aria-labelledby="btnRanking">
-                        <a class="dropdown-item" href="#">総合数</a>
-                        <a class="dropdown-item" href="#">試飲記録数</a>
-                        <a class="dropdown-item" href="#">購買数</a>
+                        {!! link_to_route('rankings.totals', '総合記録数', [], ['class' => 'dropdown-item']) !!}
+                        {!! link_to_route('rankings.reviews', '試飲記録数', [], ['class' => 'dropdown-item']) !!}
+                        {!! link_to_route('rankings.logs', '購買記録数', [], ['class' => 'dropdown-item']) !!}
                     </div>
                 </li>
             </ul>
