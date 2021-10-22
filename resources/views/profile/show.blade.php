@@ -27,12 +27,23 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block my-4">試飲記録をつける</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block my-4">購買記録をつける</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block my-4">試飲記録一覧</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block my-4">購買記録一覧</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block my-4">質問に回答する</button>
-        <button type="button" class="btn btn-secondary btn-lg btn-block my-4">ユーザー設定</button>
+        <?php
+            $links = [
+                '試飲記録を付ける' => 'profile.reviews.create',
+                '購買記録を付ける' => 'profile.logs.create',
+                '試飲記録一覧を見る' => 'profile.reviews.index',
+                '購買記録一覧を見る' => 'profile.logs.index',
+                'ユーザー設定' => 'profile.config.edit'
+            ]
+        ?>
+        @foreach ($links as $title => $name)
+            {!! link_to_route(
+                $name,
+                $title,
+                [],
+                ['class' => 'btn btn-primary btn-lg btn-block my-4'])
+            !!}
+        @endforeach
     </div>
     <div class="col-md-4 mt-3">
         <h3 class="mt-4">人気ドリンク</h3>
