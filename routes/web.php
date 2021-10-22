@@ -26,7 +26,7 @@ use App\Http\Controllers\BestController;
 
 
 // Twitterログイン
-Route::get('auth/login/twitter', [TwitterLoginController::class, 'redirectToProvider']);
+Route::get('auth/login/twitter', [TwitterLoginController::class, 'redirectToProvider'])->name('redirectToProvider');
 Route::get('auth/twitter/callback', [TwitterLoginController::class, 'handleProviderCallback']);
 
 // トップページ
@@ -45,7 +45,7 @@ Route::get('search', 'SearchController@search')->name('search.search');
 
 // ドリンク詳細ページ
 Route::group(['prefix' => 'beverages/{beverage_id}', 'as' => 'beverages.'], function () {
-    Route::get('/', 'BeverageController@index')->name('beverage');
+    Route::get('/', 'BeverageController@show')->name('beverage');
     // レビュー一覧
     Route::get('/reviews', 'BeverageController@reviews')->name('reviews');
     Route::get('/reviews/{review_id}', 'BeverageController@review')->name('review');
