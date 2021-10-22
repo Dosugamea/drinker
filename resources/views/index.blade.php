@@ -53,43 +53,23 @@
             <div class="col-md-4 mt-4">
                 <div class="h-100">
                     <h3>新着レビュー</h3>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
+                    @include('components.card_review')
                 </div>
             </div>
             <div class="col-md-4 mt-4">
                 <div class="h-100">
                     <h3>人気ドリンク</h3>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
+                    @for ($i = 0; $i < 3; $i++)
+                    @include('components.card_beverage')
+                    @endfor
                 </div>
             </div>
             <div class="col-md-4 mt-4">
                 <div class="h-100">
                     <h3>イチオシドリンク</h3>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
-                    <div class="card">
-                        カード要素
-                    </div>
+                    @for ($i = 0; $i < 3; $i++)
+                    @include('components.card_beverage')
+                    @endfor
                 </div>
             </div>
         </div>
