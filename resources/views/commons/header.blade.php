@@ -44,12 +44,37 @@
             </ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                <li class="nav-item mr-2"><a href="/auth/login/twitter" class="btn btn-info">試飲記録</a></li>
-                <li class="nav-item mr-2"><a href="/auth/login/twitter" class="btn btn-info">購買記録</a></li>
-                <li class="nav-item"><img src="https://placehold.jp/35x35.jpg" alt="..." class="rounded-circle"></li>
+                <li class="nav-item mr-2">
+                    {!! link_to_route(
+                        'profile.reviews.create',
+                        '試飲記録',
+                        [],
+                        ['class' => 'btn btn-info'])
+                    !!}
+                </li>
+                <li class="nav-item mr-2">
+                    {!! link_to_route(
+                        'profile.logs.create',
+                        '購買記録',
+                        [],
+                        ['class' => 'btn btn-info'])
+                    !!}
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('index', []) }}">
+                        <img src="{{ Auth::user()->twitter_avatar }}" alt="User profile image" class="rounded-circle">
+                    </a>
+                </li>
                 @else
-                <li class="nav-item"><a href="/auth/login/twitter" class="btn btn-secondary">Twitterでログイン</a></li>
+                <li class="nav-item">
+                {!! link_to_route(
+                    'redirectToProvider',
+                    'Twitterでログイン',
+                    [],
+                    ['class' => 'btn btn-secondary'])
+                !!}
                 @endif
+            </li>
             </ul>
         </div>
     </nav>
