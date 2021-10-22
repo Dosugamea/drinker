@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\TwitterLoginController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RankingController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\BeverageController;
@@ -29,9 +30,7 @@ Route::get('auth/login/twitter', [TwitterLoginController::class, 'redirectToProv
 Route::get('auth/twitter/callback', [TwitterLoginController::class, 'handleProviderCallback']);
 
 // トップページ
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index')->name('index');
 Route::redirect('/profile', '/');
 
 // ランキングページ
