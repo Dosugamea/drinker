@@ -79,13 +79,13 @@ Route::middleware('auth')->group(function () {
         Route::resource(
             'reviews',
             'ReviewController',
-            ['only' => ['index', 'create', 'store', 'show', 'edit']]
+            ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
         );
         // 記録投稿ページ
         Route::resource(
             'logs',
             'LogController',
-            ['only' => ['index', 'create', 'store', 'show', 'edit']]
+            ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
         );
         // ベストドリンク/ベストレビューページ
         Route::group(['prefix' => 'best/'], function () {
