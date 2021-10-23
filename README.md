@@ -6,8 +6,8 @@
 
 ## About drinker
 
-**As first, this is first project for me to learn laravel.
-Maybe writing bad code but don't attack me. If you enough kind, please make an issue with kind words.**
+**As first, this is first laravel project for me.
+Maybe writing bad code but don't attack me. If you're enough kind, please make an issue with kind words.**
 
 Drinker is a laravel web application for beverage review community.
 The web app focus on japanese softdrink or juices, not liquors.
