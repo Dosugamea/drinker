@@ -18,8 +18,8 @@ class CreateBeveragesTable extends Migration
             $table->timestamps();
             $table->string('title')->comment('名称');
             $table->string('description')->nullable()->comment('説明文(管理者設定)');
-            $table->date('sell_start_at')->nullable()->comment('発売日(おおよその日付)');
-            $table->date('sell_end_at')->nullable()->comment('終売日(おおよその日付)');
+            $table->date('sell_start_on')->nullable()->comment('発売日(おおよその日付)');
+            $table->date('sell_end_on')->nullable()->comment('終売日(おおよその日付)');
             $table->integer('jan_code')->comment('JANコード');
             $table->unsignedBigInteger('user_id')->comment('登録者のユーザーID');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');
