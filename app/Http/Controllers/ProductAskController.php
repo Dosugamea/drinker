@@ -40,12 +40,22 @@ class ProductAskController extends Controller
         $client->setAffiliateId(config('app.rakuten_affiliate'));
         // 楽天商品検索APIを叩く
         $response = $client->execute('IchibaItemSearch', array(
-          'keyword' => $jan_code
+            'keyword' => $jan_code,
+            'min_price' => 100,
+            'max_price' => 5000,
+            'imageFlag' => 1,
+            'genreId' => 100316
         ));
         if (!$response->isOk()) {
             return response()->json(
                 [ 'status' => 'error', 'resp' => $response->getMessage() ],
                 503
+            );
+        }
+        if ($response->getData()['count'] == 0) {
+            return response()->json(
+                [ 'status' => 'error', 'resp' => '一致する商品が見つかりませんでした(本当にソフトドリンクですか?)' ],
+                404
             );
         }
         Log::debug('ログサンプル', ['memo' => $response]);
@@ -56,25 +66,29 @@ class ProductAskController extends Controller
         }
         // それっぽい文字列に置き換える正規表現
         // 商品名それぞれを正規表現で置き換えて全角スペースを半角に置き換え
-        $pattern = '/【.+?】|『.+?』|（.+?）|\[.+?\]|送料無料|\d+円|期間限定|注文|ふるさと納税|PET|ペットボトル|\d*?ml|×|\d??ケース|\d*?本入?|\(.+?\)|※.+?$/';
+        $pattern = '/【.+?】|『.+?』|（.+?）|\[.+?\]|送料無料|飲料|\d+円|期間限定|注文|ふるさと納税|PET|ペットボトル|\d*?ml|×|\d??ケース|\d??L|\d??個|\d*?本?|\(.+?\)|※.+?$/';
         $productNames = array_map(function($value) use ($pattern) {
-            return str_replace('　', ' ', preg_replace($pattern, '', $productName));
+            return str_replace('　', ' ', preg_replace($pattern, '', $value));
         }, $productNames);
         // 商品名を半角スペースで切り出して配列にする
         $keywords = array_map(function($value) {
             return explode(' ', $value);
         }, $productNames);
+        // 二次元配列になっているので一次元に戻す
+        $keywords = array_reduce($keywords, 'array_merge', []);
+        Log::debug('ログサンプル', ['memo' => $keywords]);
         // 配列内の要素を数えて キー/個数 の連想配列作成
         $counts = array_count_values($keywords);
         // 2回以上出現するキーワードのみに絞り込み
-        $counts = array_filter($counts, function($key){
-            return $counts[$key] > 1;
+        Log::debug('ログサンプル', $counts);
+        $counts = array_filter($counts, function($element) {
+            return $element > 1;
         });
         // 個数を元にソート
         arsort($counts);
         // 連想配列のキーだけを配列に
         $sortedKeywords = array_keys($counts);
-        $beverageName = implode(' ', array_slice($sortedKeywords, 0, 3));
+        $beverageName = implode(' ', array_slice($sortedKeywords, 0, 5));
         // 応答を返す
         return response()->json(
             [

@@ -1,3 +1,5 @@
+let isRequested = false;
+
 function startCamera() {
     Quagga.init({
         inputStream: {
@@ -38,27 +40,37 @@ function startCamera() {
         stopCamera();
         const code = result.codeResult.code;
         $('#janCode')[0].value = code;
-        $.ajax({
-            type: "post",
-            url: "/ask/product",
-            headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-            dataType: "json",
-            data: {
-                'jan_code': code
-            }
-          })
-            //通信が成功したとき
-            .done((res) => {
-              $('#productName')[0].value = res.name;
-              $('#janCodeModal').modal('hide');
-            })
-            //通信が失敗したとき
-            .fail((error) => {
-              alert(error.statusText);
-              $('#janCodeModal').modal('hide');
-        });
+        if (!isRequested) {
+            isRequested = true;
+            $.ajax({
+                type: "post",
+                url: "/ask/product",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+                dataType: "json",
+                data: {
+                    'jan_code': code
+                }
+              })
+                //通信が成功したとき
+                .done((res) => {
+                    $('#productName')[0].value = res.name;
+                    $('#productName').prop("disabled", res.from !== 'rakuten');
+                    $('#janCodeModal').modal('hide');
+                    isRequested = false;
+                })
+                //通信が失敗したとき
+                .fail((error) => {
+                    if (error.status == 404) {
+                        alert(error.responseJSON.resp)
+                    } else {
+                        alert(error.statusText);
+                    }
+                    $('#janCodeModal').modal('hide');
+                    isRequested = false;
+            });
+        }
     });
 }
 function stopCamera() {
