@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
             Route::get('reviews', 'BestController@reviews')->name('best.reviews');
             Route::get('beverages', 'BestController@beverages')->name('best.beverages');
         });
-        // 飲み物情報のAPI問い合わせ
-        Route::post('ask/product', 'ProductAskController@ask');
     });
+    // 飲み物情報のAPI問い合わせ
+    Route::post('ask/product', 'ProductAskController@ask');
 });
