@@ -228,4 +228,10 @@ return [
 
     ],
 
+    /**
+    * 楽天商品検索APIで使用
+    */
+    'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
+    'rakuten_key' => env('RAKUTEN_APPLICATION_SECRET', false),
+    'rakuten_affiliate' => env('RAKUTEN_AFFILIATE_ID', false),
 ];
