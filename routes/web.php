@@ -95,3 +95,8 @@ Route::middleware('auth')->group(function () {
     // 飲み物情報のAPI問い合わせ
     Route::post('ask/product', 'ProductAskController@ask');
 });
+
+// アクセスログ(開発環境のみ動作)
+if (app()->isLocal()) {
+    Route::get('/dev-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+}
