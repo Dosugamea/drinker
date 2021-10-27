@@ -19,7 +19,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="name">商品名(初回登録時のみ変更可能)</label>
                 <div class="col-sm-8">
-                    <input type="text" readonly class="form-control" placeholder="JANコードを入力してください">
+                    <input id="productName" type="text" readonly class="form-control" placeholder="JANコードを入力してください">
                 </div>
             </div>
             <div class="form-group row">

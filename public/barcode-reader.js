@@ -37,8 +37,31 @@ function startCamera() {
     Quagga.onDetected((result) => {
         stopCamera();
         const code = result.codeResult.code;
-        document.getElementById("janCode").value = code;
-        $('#janCodeModal').modal('hide');
+        $('#janCode')[0].value = code;
+        // CSRF対策
+        $.ajaxSetup({
+            headers: {
+              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+        $.ajax({
+            type: "post",
+            url: "/ask/product",
+            dataType: "json",
+            data: {
+                'jan_code': code
+            }
+          })
+            //通信が成功したとき
+            .done((res) => {
+              $('#productName')[0].value = res.name;
+              $('#janCodeModal').modal('hide');
+            })
+            //通信が失敗したとき
+            .fail((error) => {
+              alert(error.statusText);
+              $('#janCodeModal').modal('hide');
+        });
     });
 }
 function stopCamera() {
