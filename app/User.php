@@ -36,4 +36,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 所有するレビューを取得
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * 所有する購入記録を取得
+     */
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+
+    /**
+     * 所有する投票を取得
+     */
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
+    /**
+     * 関係するモデルの件数を読み込む
+     */
+    public function loadRelationshipCounts()
+    {
+        $this->loadCount('reviews', 'logs', 'votes');
+    }
 }
