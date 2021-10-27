@@ -79,6 +79,6 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
-<script src="./barcode-reader.js"></script>
-<link rel="stylesheet" href="./barcode-reader.css">
+<script src="/barcode-reader.js"></script>
+<link rel="stylesheet" href="/barcode-reader.css">
 @endsection
