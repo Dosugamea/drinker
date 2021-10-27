@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use RakutenRws_Client;
+use App\Beverage;
 
 class ProductAskController extends Controller
 {
@@ -16,10 +18,11 @@ class ProductAskController extends Controller
     {
         // JANコード バリデーション
         $rules = [
-            'jan_code' => ['required', 'digits_between:8,13', 'starts_with:45,49']
+            'jan_code' => ['required', 'digits_between:8,13']
         ];
         $this->validate($request, $rules);
         $jan_code = $request->input('jan_code');
+        Log::debug('ログサンプル', ['memo' => $jan_code]);
         // 既存ドリンクであればそれを返す
         $beverage = Beverage::where('jan_code', $jan_code)->first();
         if($beverage != NULL) {
@@ -45,12 +48,16 @@ class ProductAskController extends Controller
                 503
             );
         }
+        Log::debug('ログサンプル', ['memo' => $response]);
         // 商品情報から商品名だけを取り出す
-        $productNames = array_column($response, 'itemName');
+        $productNames = array();
+        foreach ($response as $product) {
+            array_push($productNames, $product['itemName']);
+        }
         // それっぽい文字列に置き換える正規表現
-        $pattern = '/【.+?】|『.+?』|（.+?）|\[.+?\]|送料無料|\d+円|期間限定|注文|ふるさと納税|PET|ペットボトル|\d*?ml|×|\d??ケース|\d*?本入?|\(.+?\)|※.+?$/';
         // 商品名それぞれを正規表現で置き換えて全角スペースを半角に置き換え
-        $productNames = array_map(function($value) {
+        $pattern = '/【.+?】|『.+?』|（.+?）|\[.+?\]|送料無料|\d+円|期間限定|注文|ふるさと納税|PET|ペットボトル|\d*?ml|×|\d??ケース|\d*?本入?|\(.+?\)|※.+?$/';
+        $productNames = array_map(function($value) use ($pattern) {
             return str_replace('　', ' ', preg_replace($pattern, '', $productName));
         }, $productNames);
         // 商品名を半角スペースで切り出して配列にする
