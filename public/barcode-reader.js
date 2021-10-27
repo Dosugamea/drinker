@@ -38,15 +38,12 @@ function startCamera() {
         stopCamera();
         const code = result.codeResult.code;
         $('#janCode')[0].value = code;
-        // CSRF対策
-        $.ajaxSetup({
-            headers: {
-              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-        });
         $.ajax({
             type: "post",
             url: "/ask/product",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
             dataType: "json",
             data: {
                 'jan_code': code
