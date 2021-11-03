@@ -4,12 +4,13 @@
 <div class="row">
     <div class="col-md-8 mx-auto">
         <h2 class="text-center">試飲記録投稿</h2>
-        <form class="mt-5" method="post" action="/">
+        <form class="mt-5" method="post" action="{{ route('profile.reviews.store', []) }}" enctype="multipart/form-data">
+            @csrf
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="janCode">JANコード</label>
                 <div class="col-sm-8">
                     <div class="input-group">
-                        <input type="text" readonly id="janCode" class="form-control" placeholder="JANコードを入力してください">
+                        <input type="text" name="janCode" readonly id="janCode" class="form-control" placeholder="JANコードを入力してください">
                         <div class="input-group-append">
                             <button type="button" onclick="startCamera()" class="button btn-primary" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#janCodeModal">カメラ起動</button>
                         </div>
@@ -17,15 +18,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="name">商品名(初回登録時のみ変更可能)</label>
+                <label class="col-sm-4 col-form-label" for="productName">商品名(初回登録時のみ変更可能)</label>
                 <div class="col-sm-8">
-                    <input id="productName" type="text" disabled class="form-control" placeholder="JANコードを入力してください">
+                    <input id="productName" name="productName" type="text" disabled class="form-control" placeholder="JANコードを入力してください">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="name">評価</label>
+                <label class="col-sm-4 col-form-label" for="reviewRate">評価</label>
                 <div class="col-sm-8">
-                    <select class="form-control" id="exampleFormControlSelect2">
+                    <select id="reviewRate" name="reviewRate" class="form-control">
                         <option>1.0</option>
                         <option>1.5</option>
                         <option>2.0</option>
@@ -39,22 +40,22 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="name">レビュータイトル</label>
+                <label class="col-sm-4 col-form-label" for="reviewTitle">レビュータイトル</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" placeholder="うまい">
+                    <input id="reviewTitle" name="reviewTitle" type="text" class="form-control" placeholder="うまい">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="name">レビュー本文</label>
+                <label class="col-sm-4 col-form-label" for="reviewBody">レビュー本文</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" rows="5" placeholder="もっと評価されるべき"></textarea>
+                    <textarea id="reviewBody" name="reviewBody" class="form-control" rows="5" placeholder="もっと評価されるべき"></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="validatedCustomFile">画像選択(任意)</label>
                 <div class="col-sm-8">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile">
+                        <input type="file" class="custom-file-input" name="files[][photo]" id="customFile" multiple>
                         <label class="custom-file-label" for="customFile">ファイルを選択...</label>
                     </div>
                 </div>
