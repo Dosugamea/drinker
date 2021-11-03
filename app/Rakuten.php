@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rakuten extends Model
 {
+    protected $fillable = ['title', 'body', 'url', 'beverage_id'];
+
     /**
      * 属する飲料を取得
      */

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Beverage extends Model
 {
+    protected $fillable = ['title', 'description', 'jan_code', 'user_id'];
+
     /**
      * 作成者を取得
     */
