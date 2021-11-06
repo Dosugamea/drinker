@@ -95,7 +95,3 @@ Route::middleware('auth')->group(function () {
     // 飲み物情報のAPI問い合わせ
     Route::post('ask/product', 'ProductAskController@ask');
 });
-
-$router->group(['namespace' => '\Rap2hpoutre\LaravelLogViewer'], function() use ($router) {
-    $router->get('logs', 'LogViewerController@index');
-});

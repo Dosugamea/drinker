@@ -18,7 +18,6 @@ class AppServiceProvider extends ServiceProvider
             if (class_exists(TelescopeApplicationServiceProvider::class)) {
                 $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
             }
-            $this->app->register(\Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class);
         }
     }
 
