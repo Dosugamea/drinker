@@ -16,4 +16,5 @@ Route::group([
     $router->resource('manager/logs', LogController::class);
     $router->resource('manager/reviews', ReviewController::class);
     $router->resource('manager/rakutens', RakutenController::class);
+    $router->resource('manager/images', ImageController::class);
 });
