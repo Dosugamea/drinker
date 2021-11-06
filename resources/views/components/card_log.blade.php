@@ -11,7 +11,11 @@
                 <p>購入単価: {{$log->price}}</p>
                 <p>登録日時: {{$log->created_at}}</p>
                 <div class="text-right">
-                    <p class="btn btn-secondary mx-2">詳細ページへ</p>
+                    <p class="btn btn-secondary mx-2">
+                        <a href="{{ route('beverages.beverage', ['beverage_id'=>$log->beverage->id]) }}">
+                            詳細ページへ
+                        </a>
+                    </p>
                 </div>
             </div>
         </a>
