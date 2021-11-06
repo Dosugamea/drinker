@@ -5,7 +5,7 @@
         .custom-tron {
             border: 0px;
             box-shadow: 0px;
-            background:url('imgs/daniel-sinoca-AANCLsb0sU0-unsplash.jpg') center no-repeat;
+            background:url('imgs/jong-marshes-79mNMAvSORg-unsplash.jpg') center no-repeat;
             background-size: cover;
         }
         @media only screen and (min-width: 600px) {
@@ -13,7 +13,7 @@
         }
     </style>
     <div class="center jumbotron rounded-0 custom-tron">
-        <div class="text-center text-white mt-5">
+        <div class="text-center text-white">
             <h1>Drinker</h1>
             <h1>毎日のゴクゴクをシェアしよう</h1>
         </div>
