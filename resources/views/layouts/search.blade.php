@@ -28,15 +28,12 @@
     </div>
 
     {{-- ページネーション予定地 --}}
-    <nav aria-label="Page navigation example mx-auto">
-        <ul class="pagination">
-            <li class="page-item ml-auto"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item mr-auto"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    @isset($reviews)
+    {{ $reviews->links() }}
+    @endisset
+    @isset($logs)
+    {{ $logs->links() }}
+    @endisset
 </div>
 <!-- 絞り込み用モーダル -->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

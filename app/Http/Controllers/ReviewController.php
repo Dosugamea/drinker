@@ -18,7 +18,10 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view('profile.reviews.index');
+        $reviews = \Auth::user()->reviews()->orderBy('created_at', 'desc')->paginate(10);
+        return view('profile.reviews.index', [
+            'reviews' => $reviews,
+        ]);
     }
 
     /**
@@ -63,7 +66,7 @@ class ReviewController extends Controller
             foreach ($request->file('files') as $index=> $e) {
                 $ext = $e['photo']->guessExtension();
                 $filename = "{$user_id}_{$request->janCode}_{$index}.{$ext}";
-                $path = $e['photo']->storeAs('photos', $filename);
+                $path = $e['photo']->storeAs('public/reviews', $filename);
                 $review->images()->create([
                     'path'=> $path,
                     'order'=> $index,
@@ -73,7 +76,7 @@ class ReviewController extends Controller
         }
         // 前のURLへリダイレクトさせる
         DB::commit();
-        return back();
+        return redirect()->route('profile.reviews.index');
     }
 
     /**
