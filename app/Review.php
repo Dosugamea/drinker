@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
+    protected $fillable = ['title', 'star', 'body', 'user_id', 'beverage_id'];
+
      /**
      * 作成者を取得
      */

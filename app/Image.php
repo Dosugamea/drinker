@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    protected $fillable = ['path', 'order', 'user_id'];
+
     /**
      * 作成者を取得
     */
