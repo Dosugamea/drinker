@@ -11,9 +11,9 @@ class Beverage extends Model
     /**
      * 作成者を取得
     */
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -21,7 +21,7 @@ class Beverage extends Model
     */
     public function rakuten_products()
     {
-        return $this->hasMany(Rakuten::class);
+        return $this->hasMany('App\Rakuten');
     }
 
     /**
@@ -29,7 +29,7 @@ class Beverage extends Model
     */
     public function reviews()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany('App\Review');
     }
 
     /**

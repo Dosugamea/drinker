@@ -11,9 +11,9 @@ class Review extends Model
      /**
      * 作成者を取得
      */
-    public function author()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -21,7 +21,7 @@ class Review extends Model
      */
     public function beverage()
     {
-        return $this->belongsTo(Beverage::class);
+        return $this->belongsTo('App\Beverage');
     }
 
     /**
