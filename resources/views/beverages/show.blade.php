@@ -3,16 +3,16 @@
 @section('content')
 <div class="row">
     <div class="col-md-4 text-center">
-        <img src="https://placehold.jp/640x480.png" class="img-fluid" alt="Responsive image">
+        <img src="{{ $beverage->images->first()->path }}" class="img-fluid" alt="Responsive image">
         <div class="row mt-1">
             <div class="col-4">
-                <img src="https://placehold.jp/640x480.png" class="img-fluid" alt="Responsive image">
+                <img src="{{ $beverage->images[1]->path }}" class="img-fluid" alt="Responsive image">
             </div>
             <div class="col-4">
-                <img src="https://placehold.jp/640x480.png" class="img-fluid" alt="Responsive image">
+                <img src="{{ $beverage->images[2]->path }}" class="img-fluid" alt="Responsive image">
             </div>
             <div class="col-4">
-                <img src="https://placehold.jp/640x480.png" class="img-fluid" alt="Responsive image">
+                <img src="{{ $beverage->images[3]->path }}" class="img-fluid" alt="Responsive image">
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                     <div id="info" class="tab-pane active">
                         <div class="row">
                             <div class="col-md-8">
-                                <h3>ドリンク名</h3>
+                                <h3>{{ $beverage->title }}</h3>
                                 <h4>メーカー名</h4>
                             </div>
                             <div class="col-md-4 mt-2 mt-sm-0">
@@ -52,8 +52,8 @@
                                 <p>容量: 1204ml</p>
                             </div>
                             <div class="col-md-6">
-                                <p>発売時期: 2021-12-04</p>
-                                <p>終売時期: 2022-12-04</p>
+                                <p>発売時期: {{ $beverage->sell_start_on }}</p>
+                                <p>終売時期: {{ $beverage->sell_end_on }}</p>
                             </div>
                         </div>
                         <p class="mt-4">タグ:</p>
@@ -232,21 +232,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>KFCN</td>
-                <td>KFCN</td>
-                <td>1204円</td>
-              </tr>
-              <tr>
-                <td>HTCC</td>
-                <td>HTCC</td>
-                <td>1204円</td>
-              </tr>
-              <tr>
-                <td>TTRZ</td>
-                <td>TTRZ</td>
-                <td>1204円</td>
-              </tr>
+                @foreach ( $beverage->rakuten_products as $product )
+                    <tr>
+                        <a href="{{ $product->url }}">
+                            <td>{{ $product->title }}</td>
+                            <td>KFCN</td>
+                            <td>{{ $product->price }}</td>
+                        </a>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
         <a class="btn btn-primary w-75">もっと探す</a>

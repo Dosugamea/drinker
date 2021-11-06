@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Beverage;
 
 class BeverageController extends Controller
 {
@@ -11,10 +12,10 @@ class BeverageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        // TODO: Add beverage model
-        return view('beverages.show');
+        $beverage = Beverage::find($id);
+        return view('beverages.show', compact('beverage'));
     }
 
     /**
