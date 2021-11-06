@@ -39,4 +39,12 @@ class Beverage extends Model
     {
         $this->loadCount('reviews', 'votes');
     }
+
+    /**
+     * 所有する画像を取得
+     */
+    public function images()
+    {
+        return $this->morphMany('App\Image', 'image_target');
+    }
 }

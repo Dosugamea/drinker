@@ -15,12 +15,4 @@ class Rakuten extends Model
     {
         return $this->belongsTo(Beverage::class);
     }
-
-    /**
-     * 所有する画像を取得
-     */
-    public function images()
-    {
-        return $this->morphMany('App\Image', 'image_target');
-    }
 }

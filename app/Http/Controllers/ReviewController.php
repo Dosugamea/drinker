@@ -68,12 +68,17 @@ class ReviewController extends Controller
                 return back();
             }
             if ($response->getData()['count'] != 0) {
-                foreach ($response as $product) {
+                foreach ($response as $index => $product) {
                     Rakuten::create([
                         'title' => $product['itemName'],
                         'body' => $product['itemCaption'],
                         'url' => $product['itemUrl'],
                         'beverage_id' => $beverage->id,
+                    ]);
+                    $beverage->images()->create([
+                        'path'=> array_shift($product['mediumImageUrls'])['imageUrl'],
+                        'order'=> $index,
+                        'user_id' => $user_id
                     ]);
                 }
             }
