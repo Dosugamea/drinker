@@ -178,7 +178,6 @@ return [
         /*
          * Log service for development
         */
-        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
     ],
 
     /*
