@@ -12,5 +12,8 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('home');
-
+    $router->resource('manager/beverages', BeverageController::class);
+    $router->resource('manager/logs', LogController::class);
+    $router->resource('manager/reviews', ReviewController::class);
+    $router->resource('manager/rakutens', RakutenController::class);
 });
