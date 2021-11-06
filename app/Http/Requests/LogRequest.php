@@ -26,9 +26,9 @@ class LogRequest extends FormRequest
         return [
             'janCode' => 'required',
             'productName' => 'required',
-            'reviewRate' => 'required',
-            'reviewTitle' => 'required',
-            'reviewBody' => 'required'
+            'logPrice' => 'required',
+            'logCount' => 'required',
+            'logBody' => 'required'
         ];
     }
 }

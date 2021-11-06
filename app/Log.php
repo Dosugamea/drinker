@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Log extends Model
 {
+    protected $fillable = ['body', 'price', 'count', 'user_id', 'beverage_id'];
+
     /**
      * 作成者を取得
     */

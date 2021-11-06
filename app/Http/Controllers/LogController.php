@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\log;
+use App\Log;
+use App\Beverage;
+use App\Shared\BeverageFetcher;
+use App\Http\Requests\LogRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
@@ -30,12 +34,30 @@ class LogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\LogRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LogRequest $request)
     {
-        //
+        // バリデーションは 既にされている
+        DB::beginTransaction();
+        // ドリンクを取得
+        $fetcher = new BeverageFetcher;
+        $beverage = $fetcher->fetchByLogRequest($request);
+        if($beverage == NULL) {
+            DB::rollback();
+            return back();
+        };
+        // 既にレビュー投稿済みであれば上書きする(暗黙の仕様)
+        $review = Log::create([
+            'body' => $request->logBody,
+            'price' => $request->logPrice,
+            'count' => $request->logCount,
+            'beverage_id' => $beverage->id,
+            'user_id' => \Auth::id(),
+        ]);
+        DB::commit();
+        return back();
     }
 
     /**
