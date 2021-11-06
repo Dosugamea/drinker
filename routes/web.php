@@ -96,7 +96,6 @@ Route::middleware('auth')->group(function () {
     Route::post('ask/product', 'ProductAskController@ask');
 });
 
-// アクセスログ(開発環境のみ動作)
-if (app()->isLocal()) {
-    Route::get('/dev-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
-}
+$router->group(['namespace' => '\Rap2hpoutre\LaravelLogViewer'], function() use ($router) {
+    $router->get('logs', 'LogViewerController@index');
+});
