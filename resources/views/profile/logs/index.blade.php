@@ -1,9 +1,9 @@
 @extends('layouts.search')
 
 @section('cards')
-@for ($i = 0; $i < 5; $i++)
+@foreach ($logs as $log)
 <div class="col-md-5 my-2 mx-2">
-    @include('components.card_beverage')
+    @include('components.card_log')
 </div>
-@endfor
+@endforeach
 @endsection

@@ -18,7 +18,10 @@ class LogController extends Controller
      */
     public function index()
     {
-        return view('profile.logs.index');
+        $logs = \Auth::user()->logs()->orderBy('created_at', 'desc')->paginate(10);
+        return view('profile.logs.index', [
+            'logs' => $logs,
+        ]);
     }
 
     /**
@@ -48,7 +51,7 @@ class LogController extends Controller
             DB::rollback();
             return back();
         };
-        // 既にレビュー投稿済みであれば上書きする(暗黙の仕様)
+        // こちらは複数重複する投稿を作成可能
         $review = Log::create([
             'body' => $request->logBody,
             'price' => $request->logPrice,
@@ -57,7 +60,7 @@ class LogController extends Controller
             'user_id' => \Auth::id(),
         ]);
         DB::commit();
-        return back();
+        return redirect('profile.logs.index');
     }
 
     /**
