@@ -53,7 +53,7 @@
             <div class="col-md-4 mt-4">
                 <div class="h-100">
                     <h3>新着レビュー</h3>
-                    @include('components.card_review')
+                    <p>(現在未実装)</p>
                 </div>
             </div>
             <div class="col-md-4 mt-4">
