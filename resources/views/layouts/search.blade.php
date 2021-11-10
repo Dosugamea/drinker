@@ -34,6 +34,9 @@
     @isset($logs)
     {{ $logs->links() }}
     @endisset
+    @isset($beverages)
+    {{ $beverages->links() }}
+    @endisset
 </div>
 <!-- 絞り込み用モーダル -->
 <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -46,78 +49,63 @@
         </button>
         </div>
         <div class="modal-body">
-            <h3>カテゴリ</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            未選択
-                        </label>
+            <form action="/search" method="get">
+                <h3>カテゴリ</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="categoryTag" id="categoryTagRadio" value="0" checked>
+                            <label class="form-check-label" for="categoryTagRadio">
+                                未選択
+                            </label>
+                        </div>
+                    </div>
+                    {{-- ここにカテゴリ一覧が入る予定 --}}
+                </div>
+                <h3 class="mt-4">タグ</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tag" id="tagRadio" value="0" checked>
+                            <label class="form-check-label" for="tagRadio">
+                                未選択
+                            </label>
+                        </div>
                     </div>
                 </div>
-                {{-- ここにカテゴリ一覧が入る予定 --}}
-            </div>
-            <h3 class="mt-4">タグ</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios21" value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios21">
-                            未選択
-                        </label>
+                <h3 class="mt-4">検索対象</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="radioReview" value="review" checked>
+                            <label class="form-check-label" for="radioReview">
+                                レビュー
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="radioBeverage" value="beverage">
+                            <label class="form-check-label" for="radioBeverage">
+                                ドリンク
+                            </label>
+                        </div>
                     </div>
                 </div>
-                {{-- ここにタグ一覧が入る予定 --}}
-            </div>
-            <h3 class="mt-4">検索対象</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios3" id="exampleRadios31" value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios31">
-                            レビュー
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios3" id="exampleRadios32" value="option2">
-                        <label class="form-check-label" for="exampleRadios32">
-                            ドリンク
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <h3 class="mt-4">評価</h3>
-            <select class="form-control" id="exampleFormControlSelect2">
-                <option>1.0</option>
-                <option>1.5</option>
-                <option>2.0</option>
-                <option>2.5</option>
-                <option>3.0</option>
-                <option>3.5</option>
-                <option>4.0</option>
-                <option>4.5</option>
-                <option>5.0</option>
-            </select>
-            {{--
-            後回しにする
-            <h3 class="mt-4">非表示</h3>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                    画像無しのレビューを非表示
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                <label class="form-check-label" for="defaultCheck2">
-                    匿名ユーザーのレビューを非表示
-                </label>
-            </div>
-            --}}
-            <button type="button" class="btn btn-primary btn-lg btn-block my-4">絞り込む</button>
+                <h3 class="mt-4">評価</h3>
+                <select name="minRate" class="form-control">
+                    <option value="1.0">1.0</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2.0">2.0</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3.0">3.0</option>
+                    <option value="3.5">3.5</option>
+                    <option value="4.0">4.0</option>
+                    <option value="4.5">4.5</option>
+                    <option value="4.7">5.0</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-lg btn-block my-4">絞り込む</button>
+            </form>
         </div>
     </div>
     </div>

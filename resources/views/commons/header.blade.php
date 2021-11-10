@@ -8,8 +8,9 @@
         <div class="navbar-collapse collapse show" id="nav-bar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item mx-4">
-                    <form class="d-flex my-auto">
-                        <input class="form-control my-auto" type="text" placeholder="Search">
+                    <form action="/search" method="get" class="d-flex my-auto">
+                        <input name="query" class="form-control my-auto" type="text" placeholder="Search">
+                        <input type="hidden" name="type" value="beverage">
                         <button class="btn btn-secondary my-auto" type="submit">Search</button>
                     </form>
                 </li>
