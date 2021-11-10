@@ -5,15 +5,21 @@
     <div class="col-md-4 text-center">
         <img src="{{ $beverage->images->first()->path }}" class="img-fluid" alt="Responsive image">
         <div class="row mt-1">
+            @if ($beverage->images->count() >= 2)
             <div class="col-4">
                 <img src="{{ $beverage->images[1]->path }}" class="img-fluid" alt="Responsive image">
             </div>
+            @endif
+            @if ($beverage->images->count() >= 3)
             <div class="col-4">
                 <img src="{{ $beverage->images[2]->path }}" class="img-fluid" alt="Responsive image">
             </div>
+            @endif
+            @if ($beverage->images->count() >= 4)
             <div class="col-4">
                 <img src="{{ $beverage->images[3]->path }}" class="img-fluid" alt="Responsive image">
             </div>
+            @endif
         </div>
     </div>
     <div class="col-md-8 mt-4 mt-sm-0">
@@ -42,7 +48,6 @@
                             </div>
                             <div class="col-md-4 mt-2 mt-sm-0">
                                 <h4>飲まれた本数: 1本</h4>
-                                <h4>人気ランキング: 1位</h4>
                             </div>
                         </div>
                         <p class="mt-2 mt-sm-0">星: 星星星星 半星 4.5 (評価者数: 1名)</p>

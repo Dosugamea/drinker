@@ -41,35 +41,29 @@
                     <div class="card-body">
                         <h5 class="card-title">統計</h5>
                         <p class="card-text">
-                            <p>ユーザーに飲まれた本数: XX本(ダム 0基分)</p>
-                            <p>ユーザーの試飲記録数: YY記事(同人誌0冊分)</p>
-                            <p>登録ユーザー数: 1人</p>
+                            <p>ユーザーに飲まれた本数: {{$logs_count}}本(ダム 0基分)</p>
+                            <p>ユーザーの試飲記録数: {{$reviews_count}}記事(同人誌0冊分)</p>
+                            <p>登録ユーザー数: {{$users_count}}人</p>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 mt-4">
+            <div class="col-md-6 mt-4">
                 <div class="h-100">
                     <h3>新着レビュー</h3>
-                    <p>(現在未実装)</p>
+                    @foreach ($reviews as $review)
+                    @include('components.card_review')
+                    @endforeach
                 </div>
             </div>
-            <div class="col-md-4 mt-4">
+            <div class="col-md-6 mt-4">
                 <div class="h-100">
-                    <h3>人気ドリンク</h3>
-                    @for ($i = 0; $i < 3; $i++)
+                    <h3>新着ドリンク</h3>
+                    @foreach ($beverages as $beverage)
                     @include('components.card_beverage')
-                    @endfor
-                </div>
-            </div>
-            <div class="col-md-4 mt-4">
-                <div class="h-100">
-                    <h3>イチオシドリンク</h3>
-                    @for ($i = 0; $i < 3; $i++)
-                    @include('components.card_beverage')
-                    @endfor
+                    @endforeach
                 </div>
             </div>
         </div>
