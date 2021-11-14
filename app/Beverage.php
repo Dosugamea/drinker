@@ -33,6 +33,14 @@ class Beverage extends Model
     }
 
     /**
+     * タグ一覧を取得
+    */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag', 'beverages_tags', 'tag_id', 'beverage_id');
+    }
+
+    /**
      * 関係するモデルの件数を読み込む
      */
     public function loadRelationshipCounts()

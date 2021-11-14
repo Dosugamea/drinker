@@ -17,4 +17,6 @@ Route::group([
     $router->resource('manager/reviews', ReviewController::class);
     $router->resource('manager/rakutens', RakutenController::class);
     $router->resource('manager/images', ImageController::class);
+    $router->resource('manager/tags', TagController::class);
+    $router->resource('manager/beverage-tags', BeverageTagController::class);
 });
