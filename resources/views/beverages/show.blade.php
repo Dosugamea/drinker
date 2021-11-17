@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <p class="mt-4">タグ:</p>
-                        <p>BootStrap-tags-input</p>
+                        <input id="tags" name="tags" type="text" data-role="tagsinput" value="{{ $tags }}">
                     </div>
                     <div id="review" class="tab-pane text-center">
                         <div class="card rounded-0 bg-white shadow-sm h-100 my-2">
