@@ -62,6 +62,10 @@ Route::group(['prefix' => 'beverages/{beverage_id}', 'as' => 'beverages.'], func
         'BeverageAnswerController',
         ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
     );
+    // タグ追加
+    Route::post('/tags/add', 'BeverageController@addTag')->name('addTag');
+    // タグ削除
+    Route::post('/tags/remove', 'BeverageController@removeTag')->name('removeTag');
 });
 
 // ユーザー情報
