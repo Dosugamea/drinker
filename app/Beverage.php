@@ -37,7 +37,7 @@ class Beverage extends Model
     */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag', 'beverages_tags', 'tag_id', 'beverage_id');
+        return $this->belongsToMany('App\Tag', 'beverages_tags', 'beverage_id', 'tag_id');
     }
 
     /**
