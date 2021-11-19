@@ -71,7 +71,7 @@
      * Adds the given item as a new tag. Pass true to dontPushVal to prevent
      * updating the elements val()
      */
-    add: function(item, dontPushVal, options) {
+    add: function (item, dontPushVal, options) {
       var self = this;
 
       if (self.options.maxTags && self.itemsArray.length >= self.options.maxTags)
@@ -143,7 +143,14 @@
 
       // add a tag element
 
-      var $tag = $('<span class="' + htmlEncode(tagClass) + (itemTitle !== null ? ('" title="' + itemTitle) : '') + '">' + htmlEncode(itemText) + '<span data-role="remove"></span></span>');
+      var $tag = $(
+        '<span class="' + htmlEncode(tagClass) +
+        (itemTitle !== null ? ('" title="' + itemTitle) : '') + '">'
+        + htmlEncode(itemText) +
+        '<span data-role="info"></span>' +
+        (!tagClass.includes('primary') ? '<span data-role="remove"></span>' : '') +
+        '</span>'
+      );
       $tag.data('item', item);
       self.findInputWrapper().before($tag);
 
@@ -291,9 +298,6 @@
 
       self.options = $.extend({}, defaultOptions, options);
       // When itemValue is set, freeInput should always be false
-      if (self.objectItems)
-        self.options.freeInput = false;
-
       makeOptionItemFunction(self.options, 'itemValue');
       makeOptionItemFunction(self.options, 'itemText');
       makeOptionFunction(self.options, 'tagClass');
@@ -390,9 +394,11 @@
           self.$input.on('focusout', $.proxy(function(event) {
               // HACK: only process on focusout when no typeahead opened, to
               //       avoid adding the typeahead text as tag
-              if ($('.typeahead, .twitter-typeahead', self.$container).length === 0) {
-                self.add(self.$input.val());
-                self.$input.val('');
+            if ($('.typeahead, .twitter-typeahead', self.$container).length === 0) {
+                if (self.$input.val() !== "") {
+                  self.add({ 'type': 1, 'name': self.$input.val() });
+                  self.$input.val('');
+                }
               }
           }, self));
         }
@@ -469,20 +475,18 @@
         $input.attr('size', Math.max(this.inputSize, size));
       }, self));
 
-      self.$container.on('keypress', 'input', $.proxy(function(event) {
-         var $input = $(event.target);
-
-         if (self.$element.attr('disabled')) {
-            self.$input.attr('disabled', 'disabled');
-            return;
-         }
-
-         var text = $input.val(),
-         maxLengthReached = self.options.maxChars && text.length >= self.options.maxChars;
-         if (self.options.freeInput && (keyCombinationInList(event, self.options.confirmKeys) || maxLengthReached)) {
+      self.$container.on('keypress', 'input', $.proxy(function (event) {
+        var $input = $(event.target);
+        if (self.$element.attr('disabled')) {
+          self.$input.attr('disabled', 'disabled');
+          return;
+        }
+        var text = $input.val(),
+        maxLengthReached = self.options.maxChars && text.length >= self.options.maxChars;
+        if (self.options.freeInput && (keyCombinationInList(event, self.options.confirmKeys) || maxLengthReached)) {
             // Only attempt to add a tag if there is data in the field
             if (text.length !== 0) {
-               self.add(maxLengthReached ? text.substr(0, self.options.maxChars) : text);
+               self.add(maxLengthReached ? text.substr(0, self.options.maxChars) : { 'type': 1, 'name': text });
                $input.val('');
             }
 
@@ -497,6 +501,16 @@
             wordSpace = Math.ceil(textLength / 5),
             size = textLength + wordSpace + 1;
          $input.attr('size', Math.max(this.inputSize, size));
+      }, self));
+
+      // Info icon clicked
+      self.$container.on('click', '[data-role=info]', $.proxy(function(event) {
+        if (self.$element.attr('disabled')) {
+          return;
+        }
+        location.href = location.protocol + '//' + location.host
+          + '/search?tag='
+          + $(event.target).closest('.badge').data('item').name;
       }, self));
 
       // Remove icon clicked
@@ -694,11 +708,24 @@
 
 $('#tags').tagsinput({
   maxTags: 11,
-  maxChars: 20
+  maxChars: 20,
+  freeInput: true,
+  itemValue: function (item) {
+    return item.name;
+  },
+  itemText: function(item) {
+    return item.name;
+  },
+  tagClass: function (item) {
+    switch (item.type) {
+      case 0: return 'badge badge-primary';
+      case 1: return 'badge badge-secondary';
+    }
+  }
 });
 $('#tags').on('beforeItemAdd', function(event) {
   const tag = event.item
-  if (!event.options || !event.options.preventPost) {
+  if (!tag.preventPost) {
       $.ajax({
           type: "post",
           url: location.href.split('?')[0] + "/tags/add",
@@ -707,7 +734,7 @@ $('#tags').on('beforeItemAdd', function(event) {
           },
           dataType: "json",
           data: {
-              'name': tag
+              'name': tag.name
           }
       })
       //通信が成功したとき
@@ -731,7 +758,7 @@ $('#tags').on('beforeItemRemove', function(event) {
           },
           dataType: "json",
           data: {
-              'name': tag
+              'name': tag.name
           }
       })
       //通信が成功したとき
@@ -742,4 +769,11 @@ $('#tags').on('beforeItemRemove', function(event) {
       .fail((error) => {
         $('#tags').tagsinput('add', tag, {preventPost: true});
       })
-}});
+  }
+});
+$.each(tags, function (_, item) {
+  $('#tags').tagsinput(
+    'add',
+    { name: item.name, type: item.type, preventPost: true }
+  );
+});

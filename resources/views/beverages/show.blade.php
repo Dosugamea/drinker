@@ -62,7 +62,10 @@
                             </div>
                         </div>
                         <p class="mt-4">タグ:</p>
-                        <input id="tags" name="tags" type="text" data-role="tagsinput" value="{{ $tags }}">
+                        <input id="tags" name="tags" type="text" data-role="tagsinput">
+                        <script>
+                        let tags = {!! json_encode($tags) !!}
+                        </script>
                     </div>
                     <div id="review" class="tab-pane text-center">
                         <div class="card rounded-0 bg-white shadow-sm h-100 my-2">
