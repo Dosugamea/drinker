@@ -12,18 +12,6 @@
 */
 
 use App\Http\Controllers\TwitterLoginController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\RankingController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\BeverageController;
-use App\Http\Controllers\BeverageQuestionController;
-use App\Http\Controllers\BeverageAnswerController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ConfigController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\LogController;
-use App\Http\Controllers\BestController;
-
 
 // Twitterログイン
 Route::get('auth/login/twitter', [TwitterLoginController::class, 'redirectToProvider'])->name('redirectToProvider');
