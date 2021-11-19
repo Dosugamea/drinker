@@ -32,7 +32,7 @@
             </li>
             <li class="nav-item ml-auto">
                 <form action="/beverages/{{ $beverage->id }}/favorite" method="post">
-                    <button type="submit" class="nav-link bg-primary text-white" href="#">お気に入り</button>
+                    <button type="submit" class="nav-link bg-primary text-white">お気に入り</button>
                 </form>
             </li>
         </ul>
@@ -108,7 +108,7 @@
                             <h6 class="mx-2 my-1">
                                 {{ Str::limit($review->body, 30) }}
                             </h6>
-                            <a href="{{ route('beverages.reviews', ['beverage_id'=> $review->beverage->id]) }}" class="text-right mr-2">全文を見る</a>
+                            <a href="{{ route('beverages.review', ['review_id'=> $review->id, 'beverage_id'=> $review->beverage->id]) }}" class="text-right mr-2">全文を見る</a>
                         </div>
                         @endforeach
                         <a class="mt-2 btn btn-primary w-75">もっと見る</a>
