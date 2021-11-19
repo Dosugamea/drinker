@@ -45,6 +45,14 @@ class BeverageController extends Controller
     {
         // 飲み物が存在しない場合はエラー
         $beverage = Beverage::findOrFail($id);
+        // ログインしていない場合はエラー
+        $user_id = \Auth::id();
+        if ($user_id == NULL) {
+            return response()->json(
+                ['status' => 'error', 'message' => 'You must login before action.'],
+                400
+            );
+        }
         /* @var $tagName string|null */
         $tagName = $request->input('name');
         /* @var $ary_tags int[] */
@@ -67,8 +75,6 @@ class BeverageController extends Controller
                 400
             );
         }
-        /* @var $user_id int */
-        $user_id = \Auth::id();
         // 既存タグを取得または作成
         $tag = Tag::firstOrCreate(
             ['name' => $tagName],
@@ -101,6 +107,14 @@ class BeverageController extends Controller
     {
         // 飲み物が存在しない場合はエラー
         $beverage = Beverage::findOrFail($id);
+        // ログインしていない場合はエラー
+        $user_id = \Auth::id();
+        if ($user_id == NULL) {
+            return response()->json(
+                ['status' => 'error', 'message' => 'You must login before action.'],
+                400
+            );
+        }
         /* @var $tagName string|null */
         $tagName = $request->input('name');
         /* @var $arrayTags int[] */
