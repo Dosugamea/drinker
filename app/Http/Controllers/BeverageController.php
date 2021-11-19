@@ -30,10 +30,11 @@ class BeverageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function reviews()
+    public function reviews(int $id)
     {
-        // TODO: Add beverage model
-        return view('beverages.reviews.index');
+        $beverage = Beverage::findOrFail($id);
+        $reviews = $beverage->reviews()->orderBy('created_at', 'desc')->paginate(10);
+        return view('beverages.reviews.index', compact('beverage', 'reviews'));
     }
 
     /**

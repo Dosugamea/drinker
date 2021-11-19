@@ -42,7 +42,7 @@
         <a class="btn btn-primary" href="{{ route('beverages.beverage', ['beverage_id'=> $review->beverage->id]) }}">
             飲料情報を見る
         </a>
-        <a class="btn btn-secondary" href="{{ route('beverages.reviews', ['beverage_id'=> $review->beverage->id]) }}">
+        <a class="btn btn-secondary" href="{{ route('beverages.review', ['beverage_id'=> $review->beverage->id, 'review_id'=> $review->id]) }}">
             レビュー全文を見る
         </a>
     </h6>
