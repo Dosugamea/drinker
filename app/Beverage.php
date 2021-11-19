@@ -37,7 +37,7 @@ class Beverage extends Model
     */
     public function tags()
     {
-        return $this->belongsToMany('App\Tag', 'beverages_tags', 'beverage_id', 'tag_id');
+        return $this->belongsToMany('App\Tag', 'beverages_tags', 'beverage_id', 'tag_id')->withTimestamps();
     }
 
     /**
