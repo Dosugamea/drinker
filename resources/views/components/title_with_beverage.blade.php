@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-6 text-center">
-        <div class="h-100">
-            <h3 class="mt-3">レビュー一覧</h3>
+        <div class="row h-100 mb-3">
+            <h3 class="my-auto mx-auto">{{ $pageTitle }}</h3>
         </div>
     </div>
     <div class="col-md-6 mt-2 mt-md-0 text-center">
