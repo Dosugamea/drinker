@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Beverage;
+use App\Review;
 use App\Tag;
 
 class BeverageController extends Controller
@@ -26,15 +27,32 @@ class BeverageController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Listing reviews for a beverage.
      *
+     * @param  int  $beverage_id
      * @return \Illuminate\Http\Response
      */
-    public function reviews(int $id)
+    public function reviews(int $beverage_id)
     {
-        $beverage = Beverage::findOrFail($id);
+        $pageTitle = 'レビュー一覧';
+        $beverage = Beverage::findOrFail($beverage_id);
         $reviews = $beverage->reviews()->orderBy('created_at', 'desc')->paginate(10);
-        return view('beverages.reviews.index', compact('beverage', 'reviews'));
+        return view('beverages.reviews.index', compact('beverage', 'reviews', 'pageTitle'));
+    }
+
+    /**
+     * Show a review for a beverage.
+     *
+     * @param  int  $beverage_id
+     * @param  int  $review_id
+     * @return \Illuminate\Http\Response
+     */
+    public function review(int $beverage_id, int $review_id)
+    {
+        $pageTitle = 'レビュー';
+        $review = Review::findOrFail($review_id);
+        $beverage = $review->beverage;
+        return view('beverages.reviews.show', compact('beverage', 'review', 'pageTitle'));
     }
 
     /**
