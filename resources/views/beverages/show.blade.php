@@ -130,7 +130,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ( $beverage->rakuten_products as $product )
+                @foreach ( $beverage->rakuten_products->take(5) as $product )
                     <tr>
                         <td><a href="{{ $product->url }}">{{ $product->title }}</a></td>
                         <td>{{ $product->shop }}</td>
