@@ -37,13 +37,21 @@
                 </div>
                 <div class="col-4 mt-2 mx-auto">
                     <div class="row justify-content-center">
-                        <button type="button" class="btn btn-primary">↑</button>
+                        <form action="{{ route('beverages.review.vote', ['review_id'=> $review->id, 'beverage_id'=> $review->beverage->id]) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="vote" value="1">
+                            <button type="submit" class="btn btn-primary">↑</button>
+                        </form>
                     </div>
                     <div class="row justify-content-center">
-                        {{ $beverage->name }}
+                        {{ $score }}
                     </div>
                     <div class="row justify-content-center">
-                        <button type="button" class="btn btn-primary">↓</button>
+                        <form action="{{ route('beverages.review.vote', ['review_id'=> $review->id, 'beverage_id'=> $review->beverage->id]) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="vote" value="-1">
+                            <button type="submit" class="btn btn-primary">↓</button>
+                        </form>
                     </div>
                 </div>
             </div>

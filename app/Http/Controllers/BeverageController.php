@@ -215,4 +215,37 @@ class BeverageController extends Controller
         );
         return back();
     }
+
+    /**
+     * Add vote to specified review.
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @param  int  $beverage_id
+     * @param  int  $review_id
+     * @return \Illuminate\Http\Response
+     */
+    public function voteReview(Request $request, int $beverage_id, int $review_id)
+    {
+        // ログインしていない場合はエラー
+        $user_id = \Auth::id();
+        if ($user_id == NULL) {
+            return response()->json(
+                ['status' => 'error', 'message' => 'You must login before action.'],
+                400
+            );
+        }
+        // 飲み物が存在しない場合はエラー
+        $review = Review::findOrFail($review_id);
+        // 既に評価済みならは削除
+        $existedVote = $review->votes()->where('user_id', $user_id)->first();
+        if ($existedVote != NULL) {
+            $existedVote->delete();
+        }
+        // 新しい評価を作成して追加
+        $newVoteValue = $request->input('vote') == '1'  ? 1 : -1;
+        $review->votes()->create(
+            ['votes'=> $newVoteValue, 'user_id' => $user_id]
+        );
+        return back();
+    }
 }

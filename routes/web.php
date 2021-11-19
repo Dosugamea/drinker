@@ -48,7 +48,10 @@ Route::group(['prefix' => 'beverages/{beverage_id}', 'as' => 'beverages.'], func
     Route::get('/', 'BeverageController@show')->name('beverage');
     // レビュー一覧
     Route::get('/reviews', 'BeverageController@reviews')->name('reviews');
+    // レビュー表示
     Route::get('/reviews/{review_id}', 'BeverageController@review')->name('review');
+    // レビュー投票
+    Route::post('/reviews/{review_id}/vote', 'BeverageController@voteReview')->name('review.vote');
     // 飲料投票
     Route::post('/vote', 'BeverageController@voteBeverage')->name('beverage.vote');
     // タグ追加
