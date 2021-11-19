@@ -41,6 +41,14 @@ class Beverage extends Model
     }
 
     /**
+     * 所有する投票を取得
+     */
+    public function votes()
+    {
+        return $this->morphMany('App\Vote', 'vote_target');
+    }
+
+    /**
      * タグ一覧を取得
     */
     public function tags()

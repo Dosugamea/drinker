@@ -31,8 +31,9 @@
               <a class="nav-link" href="#review" data-toggle="tab">レビュー</a>
             </li>
             <li class="nav-item ml-auto">
-                <form action="/beverages/{{ $beverage->id }}/favorite" method="post">
-                    <button type="submit" class="nav-link bg-primary text-white">お気に入り</button>
+                <form action="{{ route('beverages.beverage.vote', ['beverage_id'=> $beverage->id]) }}" method="post">
+                    @csrf
+                    <button type="submit" class="nav-link bg-primary text-white">お気に入り x{{ $score }}</button>
                 </form>
             </li>
         </ul>
@@ -46,8 +47,8 @@
                                 <h4>メーカー名</h4>
                             </div>
                             <div class="col-md-4 mt-2 mt-sm-0">
-                                <h4>飲まれた本数: 1本</h4>
-                                <h4>レビュー数: 1記事</h4>
+                                <h5>飲まれた本数: 1本</h5>
+                                <h5>レビュー数: 1記事</h5>
                             </div>
                         </div>
                         <div class="row mt-4">

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
+    protected $fillable = ['votes', 'user_id'];
+
     /**
      * 作成者を取得
     */

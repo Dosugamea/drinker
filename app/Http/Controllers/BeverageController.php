@@ -17,13 +17,14 @@ class BeverageController extends Controller
     public function show(int $id)
     {
         $beverage = Beverage::findOrFail($id);
+        $score = $beverage->votes()->sum('votes');
         $reviews = $beverage->reviews()->orderBy('created_at', 'desc')->take(3)->get();
         $tags = $beverage->tags()->orderBy('type')->get()->map(
             function ($tag) {
                 return ['name'=>$tag->name, 'type'=>$tag->type];
             }
         )->all();
-        return view('beverages.show', compact('beverage', 'tags', 'reviews'));
+        return view('beverages.show', compact('beverage', 'tags', 'reviews', 'score'));
     }
 
     /**
@@ -51,20 +52,22 @@ class BeverageController extends Controller
     {
         $pageTitle = 'レビュー';
         $review = Review::findOrFail($review_id);
+        $score = $review->votes()->sum('votes');
         $beverage = $review->beverage;
-        return view('beverages.reviews.show', compact('beverage', 'review', 'pageTitle'));
+        return view('beverages.reviews.show', compact('beverage', 'review', 'pageTitle', 'score'));
     }
 
     /**
      * Add specified tag to this beverage resource.
      *
      * @param  Illuminate\Http\Request  $request
+     * @param  int  $beverage_id
      * @return \Illuminate\Http\Response
      */
-    public function addTag(Request $request, int $id)
+    public function addTag(Request $request, int $beverage_id)
     {
         // 飲み物が存在しない場合はエラー
-        $beverage = Beverage::findOrFail($id);
+        $beverage = Beverage::findOrFail($beverage_id);
         // ログインしていない場合はエラー
         $user_id = \Auth::id();
         if ($user_id == NULL) {
@@ -121,12 +124,13 @@ class BeverageController extends Controller
      * Remove specified tag from beverage resource.
      *
      * @param  Illuminate\Http\Request  $request
+     * @param  int  $beverage_id
      * @return \Illuminate\Http\Response
      */
-    public function removeTag(Request $request, int $id)
+    public function removeTag(Request $request, int $beverage_id)
     {
         // 飲み物が存在しない場合はエラー
-        $beverage = Beverage::findOrFail($id);
+        $beverage = Beverage::findOrFail($beverage_id);
         // ログインしていない場合はエラー
         $user_id = \Auth::id();
         if ($user_id == NULL) {
@@ -184,5 +188,31 @@ class BeverageController extends Controller
         return response()->json(
             ['status' => 'success']
         );
+    }
+
+    /**
+     * Add vote to specified beverage.
+     *
+     * @param  Illuminate\Http\Request  $request
+     * @param  int  $beverage_id
+     * @return \Illuminate\Http\Response
+     */
+    public function voteBeverage(Request $request, int $beverage_id)
+    {
+        // ログインしていない場合はエラー
+        $user_id = \Auth::id();
+        if ($user_id == NULL) {
+            return response()->json(
+                ['status' => 'error', 'message' => 'You must login before action.'],
+                400
+            );
+        }
+        // 飲み物が存在しない場合はエラー
+        $beverage = Beverage::findOrFail($beverage_id);
+        $beverage->votes()->firstOrCreate(
+            ['user_id'=> $user_id],
+            ['votes'=>1, 'user_id' => $user_id]
+        );
+        return back();
     }
 }
