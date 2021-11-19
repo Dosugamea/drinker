@@ -19,4 +19,5 @@ Route::group([
     $router->resource('manager/images', ImageController::class);
     $router->resource('manager/tags', TagController::class);
     $router->resource('manager/beverage-tags', BeverageTagController::class);
+    $router->resource('manager/votes', VoteController::class);
 });
