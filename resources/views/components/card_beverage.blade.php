@@ -1,6 +1,6 @@
 <div class="card rounded-0 bg-white shadow-sm">
     <div class="is-centered">
-        <a href="{{ route('beverages.beverage', ['beverage_id'=>'1']) }}">
+        <a href="{{ route('beverages.beverage', ['beverage_id'=> $beverage->id]) }}">
             <div class="col-12">
                 <img src="{{ $beverage->images()->get()[0]->path }}" class="img-fluid d-block mx-auto rounded-0">
             </div>
