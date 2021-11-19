@@ -5,7 +5,7 @@
             aria-expanded="true">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse show" id="nav-bar">
+        <div class="navbar-collapse collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item mx-4">
                     <form action="/search" method="get" class="d-flex my-auto">
