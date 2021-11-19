@@ -33,10 +33,10 @@
         @endforeach
     </div>
     <h5 class="mx-2 mt-2">
-        {{ $review->title }}
+        {{ Str::limit($review->title, 15) }}
     </h5>
     <h6 class="mx-2 my-1">
-        {{ $review->body }}
+        {{ Str::limit($review->body, 30) }}
     </h6>
     <h6 class="text-right mr-2">
         <a class="btn btn-primary" href="{{ route('beverages.beverage', ['beverage_id'=> $review->beverage->id]) }}">
