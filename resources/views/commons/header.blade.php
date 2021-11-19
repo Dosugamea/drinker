@@ -18,22 +18,9 @@
                     <a class="nav-link dropdown-toggle" id="btnCategory" data-toggle="dropdown" href="#"
                         role="button" aria-haspopup="true" aria-expanded="false">カテゴリ</a>
                     <div class="dropdown-menu" aria-labelledby="btnCategory">
-                        @for ($i = 0; $i < 14; $i++)
-                        {!! link_to_route('search.search', '紅茶飲料', [], ['class' => 'dropdown-item']) !!}
-                        @endfor
-                        <a class="dropdown-item" href="#">水飲料</a>
-                        <a class="dropdown-item" href="#">お茶飲料</a>
-                        <a class="dropdown-item" href="#">珈琲飲料</a>
-                        <a class="dropdown-item" href="#">紅茶飲料</a>
-                        <a class="dropdown-item" href="#">果実飲料</a>
-                        <a class="dropdown-item" href="#">炭酸飲料</a>
-                        <a class="dropdown-item" href="#">乳酸飲料</a>
-                        <a class="dropdown-item" href="#">スポーツ飲料</a>
-                        <a class="dropdown-item" href="#">野菜飲料</a>
-                        <a class="dropdown-item" href="#">お酢飲料</a>
-                        <a class="dropdown-item" href="#">栄養ドリンク</a>
-                        <a class="dropdown-item" href="#">エナジードリンク</a>
-                        <a class="dropdown-item" href="#">ネタ枠</a>
+                        @foreach ($headerCategory as $category)
+                        {!! link_to_route('search.search', $category->name, ['tag' => $category->name], ['class' => 'dropdown-item']) !!}
+                        @endforeach
                     </div>
                 </li>
                 <li class="nav-item dropdown mx-2  my-auto">
