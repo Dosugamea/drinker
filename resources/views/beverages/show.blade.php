@@ -31,7 +31,9 @@
               <a class="nav-link" href="#review" data-toggle="tab">レビュー</a>
             </li>
             <li class="nav-item ml-auto">
-                <a class="nav-link bg-primary text-white" href="#">お気に入り</a>
+                <form action="/beverages/{{ $beverage->id }}/favorite" method="post">
+                    <button type="submit" class="nav-link bg-primary text-white" href="#">お気に入り</button>
+                </form>
             </li>
         </ul>
         <div class="card">
@@ -65,141 +67,50 @@
                         </script>
                     </div>
                     <div id="review" class="tab-pane text-center">
+                        @foreach ( $reviews as $review )
                         <div class="card rounded-0 bg-white shadow-sm h-100 my-2">
                             <div class="row">
                                 <div class="col-8">
                                     <h4 class="mx-2 my-1">
                                         <i class="fas fa-user"></i>
-                                        ユーザー名
+                                        {{ $review->user->name }}
                                     </h4>
                                     <h5 class="mx-2 my-1">
+                                        @for ($i = 1; $i <= $review->star; $i++)
                                         <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star-half-alt text-warning"></i>
-                                        4.5
+                                        @endfor
+                                        @if ($review->star - floor($review->star) > 0)
+                                            <i class="fas fa-star-half-alt text-warning"></i>
+                                        @endif
+                                        @for ($i = 1; $i <= 5 - $review->star; $i++)
+                                            <i class="far fa-star text-warning"></i>
+                                        @endfor
+                                        {{ $review->star }}
                                     </h5>
                                 </div>
                                 <div class="col-4 text-right">
                                     <h6 class="mr-2 my-1">
                                         スコア: 1
                                     </h6>
-                                    <small class="mr-2">2021/12/04 12:04</small>
+                                    <small class="mr-2">{{ $review->created_at }}</small>
                                 </div>
                             </div>
                             <div class="row">
+                                @foreach ( $review->images as $img )
                                 <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid">
+                                    <img src="{{ '/storage/'.$img->path }}" alt="..." class="img-fluid">
                                 </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
+                                @endforeach
                             </div>
                             <h5 class="mx-2 mt-2">
-                                レビュータイトル
+                                {{ Str::limit($review->title, 15) }}
                             </h5>
                             <h6 class="mx-2 my-1">
-                                レビュー本文
+                                {{ Str::limit($review->body, 30) }}
                             </h6>
-                            <h6 class="text-right mr-2">全文を見る</h6>
+                            <a href="{{ route('beverages.reviews', ['beverage_id'=> $review->beverage->id]) }}" class="text-right mr-2">全文を見る</a>
                         </div>
-                        <div class="card rounded-0 bg-white shadow-sm h-100 my-2">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h4 class="mx-2 my-1">
-                                        <i class="fas fa-user"></i>
-                                        ユーザー名
-                                    </h4>
-                                    <h5 class="mx-2 my-1">
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star-half-alt text-warning"></i>
-                                        4.5
-                                    </h5>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <h6 class="mr-2 my-1">
-                                        スコア: 1
-                                    </h6>
-                                    <small class="mr-2">2021/12/04 12:04</small>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                            </div>
-                            <h5 class="mx-2 mt-2">
-                                レビュータイトル
-                            </h5>
-                            <h6 class="mx-2 my-1">
-                                レビュー本文
-                            </h6>
-                            <h6 class="text-right mr-2">全文を見る</h6>
-                        </div>
-                        <div class="card rounded-0 bg-white shadow-sm h-100 my-2">
-                            <div class="row">
-                                <div class="col-8">
-                                    <h4 class="mx-2 my-1">
-                                        <i class="fas fa-user"></i>
-                                        ユーザー名
-                                    </h4>
-                                    <h5 class="mx-2 my-1">
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star-half-alt text-warning"></i>
-                                        4.5
-                                    </h5>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <h6 class="mr-2 my-1">
-                                        スコア: 1
-                                    </h6>
-                                    <small class="mr-2">2021/12/04 12:04</small>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                                <div class="col-3">
-                                    <img src="https://placehold.jp/320x240.jpg" alt="..." class="img-fluid"">
-                                </div>
-                            </div>
-                            <h5 class="mx-2 mt-2">
-                                レビュータイトル
-                            </h5>
-                            <h6 class="mx-2 my-1">
-                                レビュー本文
-                            </h6>
-                            <h6 class="text-right mr-2">全文を見る</h6>
-                        </div>
+                        @endforeach
                         <a class="mt-2 btn btn-primary w-75">もっと見る</a>
                     </div>
                 </div>

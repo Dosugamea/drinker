@@ -16,12 +16,13 @@ class BeverageController extends Controller
     public function show(int $id)
     {
         $beverage = Beverage::findOrFail($id);
+        $reviews = $beverage->reviews()->orderBy('created_at', 'desc')->take(3)->get();
         $tags = $beverage->tags()->orderBy('type')->get()->map(
             function ($tag) {
                 return ['name'=>$tag->name, 'type'=>$tag->type];
             }
         )->all();
-        return view('beverages.show', compact('beverage', 'tags'));
+        return view('beverages.show', compact('beverage', 'tags', 'reviews'));
     }
 
     /**
