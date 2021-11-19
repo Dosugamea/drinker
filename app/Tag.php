@@ -15,4 +15,12 @@ class Tag extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * このタグを使用している飲料一覧を取得
+    */
+    public function beverages()
+    {
+        return $this->belongsToMany('App\Beverage', 'beverages_tags', 'tag_id', 'beverage_id');
+    }
 }
