@@ -63,8 +63,8 @@
                     @foreach ( $headerCategory as $category )
                     <div class="col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" id="categoryTagRadio" value="{{ $category->name }}">
-                            <label class="form-check-label" for="categoryTagRadio">
+                            <input class="form-check-input" type="radio" name="category" id="categoryTagRadio{{ $loop->iteration }}" value="{{ $category->name }}">
+                            <label class="form-check-label" for="categoryTagRadio{{ $loop->iteration }}">
                                 {{ $category->name }}
                             </label>
                         </div>
@@ -84,8 +84,8 @@
                     @foreach ( $tags as $tag )
                     <div class="col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tag" id="tagRadio" value="{{ $tag->name }}">
-                            <label class="form-check-label" for="tagRadio">
+                            <input class="form-check-input" type="radio" name="tag" id="tagRadio{{ $loop->iteration }}" value="{{ $tag->name }}">
+                            <label class="form-check-label" for="tagRadio{{ $loop->iteration }}">
                                 {{ $tag->name }}
                             </label>
                         </div>
