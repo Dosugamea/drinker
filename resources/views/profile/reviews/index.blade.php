@@ -1,4 +1,4 @@
-@extends('layouts.search')
+@extends('layouts.list')
 
 @section('cards')
 @foreach ($reviews as $review)

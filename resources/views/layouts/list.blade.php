@@ -2,21 +2,18 @@
 
 @section('content')
 @include('components.title')
+{{-- カード挿入予定地 --}}
 <div class="row justify-content-around">
-    @for ($i = 0; $i < 6; $i++)
-    <div class="col-md-5 my-2 mx-2">
-        @include('components.card_beverage')
-    </div>
-    @endfor
+    @yield('cards')
 </div>
-{{-- ページネーション仮置 --}}
-<nav aria-label="Page navigation example mx-auto">
-    <ul class="pagination">
-        <li class="page-item ml-auto"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item mr-auto"><a class="page-link" href="#">Next</a></li>
-    </ul>
-</nav>
+{{-- ページネーション予定地 --}}
+@isset($reviews)
+{{ $reviews->links() }}
+@endisset
+@isset($logs)
+{{ $logs->links() }}
+@endisset
+@isset($beverages)
+{{ $beverages->links() }}
+@endisset
 @endsection

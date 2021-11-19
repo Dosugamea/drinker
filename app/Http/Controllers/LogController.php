@@ -19,9 +19,8 @@ class LogController extends Controller
     public function index()
     {
         $logs = \Auth::user()->logs()->orderBy('created_at', 'desc')->paginate(10);
-        return view('profile.logs.index', [
-            'logs' => $logs,
-        ]);
+        $pageTitle = '投稿した購買記録一覧';
+        return view('profile.logs.index', compact('logs', 'pageTitle'));
     }
 
     /**

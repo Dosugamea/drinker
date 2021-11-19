@@ -20,11 +20,8 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = \Auth::user()->reviews()->orderBy('created_at', 'desc')->paginate(10);
-        $tags = Tag::withCount('beverages')
-            ->where('type', '!=', 0)
-            ->orderByDesc('beverages_count')
-            ->take(20)->get();
-        return view('profile.reviews.index', compact('reviews', 'tags'));
+        $pageTitle = '投稿した試飲記録一覧';
+        return view('profile.reviews.index', compact('reviews', 'pageTitle'));
     }
 
     /**
