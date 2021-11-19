@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use App\Beverage;
+use App\Tag;
 use App\Shared\BeverageFetcher;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\DB;
@@ -19,9 +20,11 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = \Auth::user()->reviews()->orderBy('created_at', 'desc')->paginate(10);
-        return view('profile.reviews.index', [
-            'reviews' => $reviews,
-        ]);
+        $tags = Tag::withCount('beverages')
+            ->where('type', '!=', 0)
+            ->orderByDesc('beverages_count')
+            ->take(20)->get();
+        return view('profile.reviews.index', compact('reviews', 'tags'));
     }
 
     /**
