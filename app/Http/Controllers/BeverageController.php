@@ -16,7 +16,7 @@ class BeverageController extends Controller
     public function show(int $id)
     {
         $beverage = Beverage::findOrFail($id);
-        $tags = $beverage->tags()->get()->map(
+        $tags = $beverage->tags()->orderBy('type')->get()->map(
             function ($tag) {
                 return ['name'=>$tag->name, 'type'=>$tag->type];
             }
