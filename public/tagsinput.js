@@ -706,74 +706,76 @@
   });
 })(window.jQuery);
 
-$('#tags').tagsinput({
-  maxTags: 11,
-  maxChars: 20,
-  freeInput: true,
-  itemValue: function (item) {
-    return item.name;
-  },
-  itemText: function(item) {
-    return item.name;
-  },
-  tagClass: function (item) {
-    switch (item.type) {
-      case 0: return 'badge badge-primary';
-      case 1: return 'badge badge-secondary';
+if (typeof tags !== 'undefined') {
+  $('#tags').tagsinput({
+    maxTags: 11,
+    maxChars: 20,
+    freeInput: true,
+    itemValue: function (item) {
+      return item.name;
+    },
+    itemText: function(item) {
+      return item.name;
+    },
+    tagClass: function (item) {
+      switch (item.type) {
+        case 0: return 'badge badge-primary';
+        case 1: return 'badge badge-secondary';
+      }
     }
-  }
-});
-$('#tags').on('beforeItemAdd', function(event) {
-  const tag = event.item
-  if (!tag.preventPost) {
-      $.ajax({
-          type: "post",
-          url: location.href.split('?')[0] + "/tags/add",
-          headers: {
-              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-          },
-          dataType: "json",
-          data: {
-              'name': tag.name
-          }
-      })
-      //通信が成功したとき
-      .done((res) => {
-          console.log('ok', res)
-      })
-      //通信が失敗したとき
-      .fail((error) => {
-          $('#tags').tagsinput('remove', tag, {preventPost: true});
-      })
-  }
-});
-$('#tags').on('beforeItemRemove', function(event) {
-  const tag = event.item
-  if (!event.options || !event.options.preventPost) {
-      $.ajax({
-          type: "post",
-          url: location.href.split('?')[0] + "/tags/remove",
-          headers: {
-              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-          },
-          dataType: "json",
-          data: {
-              'name': tag.name
-          }
-      })
-      //通信が成功したとき
-      .done((res) => {
-          console.log('ok', res)
-      })
-      //通信が失敗したとき
-      .fail((error) => {
-        $('#tags').tagsinput('add', tag, {preventPost: true});
-      })
-  }
-});
-$.each(tags, function (_, item) {
-  $('#tags').tagsinput(
-    'add',
-    { name: item.name, type: item.type, preventPost: true }
-  );
-});
+  });
+  $('#tags').on('beforeItemAdd', function(event) {
+    const tag = event.item
+    if (!tag.preventPost) {
+        $.ajax({
+            type: "post",
+            url: location.href.split('?')[0] + "/tags/add",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            dataType: "json",
+            data: {
+                'name': tag.name
+            }
+        })
+        //通信が成功したとき
+        .done((res) => {
+            console.log('ok', res)
+        })
+        //通信が失敗したとき
+        .fail((error) => {
+            $('#tags').tagsinput('remove', tag, {preventPost: true});
+        })
+    }
+  });
+  $('#tags').on('beforeItemRemove', function(event) {
+    const tag = event.item
+    if (!event.options || !event.options.preventPost) {
+        $.ajax({
+            type: "post",
+            url: location.href.split('?')[0] + "/tags/remove",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            dataType: "json",
+            data: {
+                'name': tag.name
+            }
+        })
+        //通信が成功したとき
+        .done((res) => {
+            console.log('ok', res)
+        })
+        //通信が失敗したとき
+        .fail((error) => {
+          $('#tags').tagsinput('add', tag, {preventPost: true});
+        })
+    }
+  });
+  $.each(tags, function (_, item) {
+    $('#tags').tagsinput(
+      'add',
+      { name: item.name, type: item.type, preventPost: true }
+    );
+  });
+}
