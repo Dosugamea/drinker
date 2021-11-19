@@ -52,57 +52,77 @@
             <form action="/search" method="get">
                 <h3>カテゴリ</h3>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="categoryTag" id="categoryTagRadio" value="0" checked>
+                            <input class="form-check-input" type="radio" name="category" id="categoryTagRadio" value selected>
                             <label class="form-check-label" for="categoryTagRadio">
-                                未選択
+                                未指定
                             </label>
                         </div>
                     </div>
-                    {{-- ここにカテゴリ一覧が入る予定 --}}
+                    @foreach ( $headerCategory as $category )
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="categoryTagRadio" value="{{ $category->name }}">
+                            <label class="form-check-label" for="categoryTagRadio">
+                                {{ $category->name }}
+                            </label>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
                 <h3 class="mt-4">タグ</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tag" id="tagRadio" value="0" checked>
+                            <input class="form-check-input" type="radio" name="tag" id="tagRadio" selected value>
                             <label class="form-check-label" for="tagRadio">
                                 未選択
                             </label>
                         </div>
                     </div>
+                    @foreach ( $tags as $tag )
+                    <div class="col-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="tag" id="tagRadio" value="{{ $tag->name }}">
+                            <label class="form-check-label" for="tagRadio">
+                                {{ $tag->name }}
+                            </label>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
                 <h3 class="mt-4">検索対象</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="radioReview" value="review" checked>
-                            <label class="form-check-label" for="radioReview">
-                                レビュー
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="type" id="radioBeverage" value="beverage">
+                            <input class="form-check-input" type="radio" name="type" id="radioBeverage" value="beverage" checked>
                             <label class="form-check-label" for="radioBeverage">
                                 ドリンク
                             </label>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="type" id="radioReview" value="review">
+                            <label class="form-check-label" for="radioReview">
+                                レビュー
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <h3 class="mt-4">評価</h3>
-                <select name="minRate" class="form-control">
-                    <option value="1.0">1.0</option>
-                    <option value="1.5">1.5</option>
-                    <option value="2.0">2.0</option>
-                    <option value="2.5">2.5</option>
-                    <option value="3.0">3.0</option>
-                    <option value="3.5">3.5</option>
-                    <option value="4.0">4.0</option>
-                    <option value="4.5">4.5</option>
-                    <option value="4.7">5.0</option>
+                <select name="rate" class="form-control">
+                    <option selected value>未指定</option>
+                    <option value="1.0">~1.0</option>
+                    <option value="1.5">1.0~1.5</option>
+                    <option value="2.0">1.5~2.0</option>
+                    <option value="2.5">2.0~2.5</option>
+                    <option value="3.0">2.5~3.0</option>
+                    <option value="3.5">3.0~3.5</option>
+                    <option value="4.0">3.5~4.0</option>
+                    <option value="4.5">4.0~4.5</option>
+                    <option value="5.0">4.5~5.0</option>
                 </select>
                 <button type="submit" class="btn btn-primary btn-lg btn-block my-4">絞り込む</button>
             </form>

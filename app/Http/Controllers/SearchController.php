@@ -17,6 +17,11 @@ class SearchController extends Controller
      */
     public function search(Request $request)
     {
+        // ビュー内で使うタグ一覧 タグを使用している飲料が多い順にソート
+        $tags = Tag::withCount('beverages')
+            ->where('type', '!=', 0)
+            ->orderByDesc('beverages_count')
+            ->take(20)->get();
         // 要求出力: reviewまたはbeverage
         $searchType = $request->input('type', 'beverage');
         // 検索キーワード: 任意の文字列
@@ -26,12 +31,13 @@ class SearchController extends Controller
             $reviews = Review::orderBy('created_at', 'desc');
             // キーワードで絞り込み
             if ($query != '') {
-                $reviews = $reviews->where('title', 'like', '%' . $query . '%')
+                $reviews = $reviews
+                ->where('title', 'like', '%' . $query . '%')
                 ->orWhere('body', 'like', '%' . $query . '%');
             }
             // ページネーション生成
             $reviews = $reviews->paginate(10);
-            return view('search', compact('reviews'));
+            return view('search', compact('reviews', 'tags'));
         // 飲み物を検索する場合
         } else {
             $beverages = Beverage::orderBy('created_at', 'desc');
@@ -52,7 +58,7 @@ class SearchController extends Controller
             }
             // ページネーション生成
             $beverages = $beverages->paginate(10);
-            return view('search', compact('beverages'));
+            return view('search', compact('beverages', 'tags'));
         }
     }
 }
