@@ -49,6 +49,10 @@ class BeverageFetcher
             $beverage = Beverage::create([
                 'title' => $request->productName,
                 'description' => '',
+                'company' => $request->company,
+                'volume' => $request->volume,
+                'ratingAverage' => 0,
+                'ratingCount' => 0,
                 'jan_code' => $request->janCode,
                 'user_id' => $user_id,
             ]);

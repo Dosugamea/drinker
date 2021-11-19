@@ -13,15 +13,19 @@
                 <div class="col-8 my-auto">
                     <a href="{{ route('beverages.beverage', ['beverage_id'=> $beverage->id]) }}">
                         <h4 class="mt-2">{{ $beverage->title }}</h4>
-                        <h6>メーカー名</h6>
+                        <h6>{{ $beverage->company }}</h6>
                         <p>
+                            @for ($i = 1; $i <= $beverage->ratingAverage; $i++)
                             <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star-half-alt text-warning"></i>
-                            4.5 |
-                            <small>評価者数: 1名</small>
+                            @endfor
+                            @if ($beverage->ratingAverage - floor($beverage->ratingAverage) > 0)
+                                <i class="fas fa-star-half-alt text-warning"></i>
+                            @endif
+                            @for ($i = 1; $i <= 5 - $beverage->ratingAverage; $i++)
+                                <i class="far fa-star text-warning"></i>
+                            @endfor
+                            {{ $beverage->ratingAverage }} |
+                            <small>評価者数: {{$beverage->ratingCount}} 名</small>
                         </p>
                     </a>
                 </div>

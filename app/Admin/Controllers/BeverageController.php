@@ -35,6 +35,10 @@ class BeverageController extends AdminController
         $grid->column('sell_end_on', __('Sell end on'));
         $grid->column('jan_code', __('Jan code'));
         $grid->column('user_id', __('User id'));
+        $grid->column('ratingAverage', __('RatingAverage'));
+        $grid->column('ratingCount', __('RatingCount'));
+        $grid->column('company', __('Company'));
+        $grid->column('volume', __('Volume'));
 
         return $grid;
     }
@@ -58,6 +62,10 @@ class BeverageController extends AdminController
         $show->field('sell_end_on', __('Sell end on'));
         $show->field('jan_code', __('Jan code'));
         $show->field('user_id', __('User id'));
+        $show->field('ratingAverage', __('RatingAverage'));
+        $show->field('ratingCount', __('RatingCount'));
+        $show->field('company', __('Company'));
+        $show->field('volume', __('Volume'));
 
         return $show;
     }
@@ -77,6 +85,10 @@ class BeverageController extends AdminController
         $form->date('sell_end_on', __('Sell end on'))->default(date('Y-m-d'));
         $form->number('jan_code', __('Jan code'));
         $form->number('user_id', __('User id'));
+        $form->decimal('ratingAverage', __('RatingAverage'));
+        $form->number('ratingCount', __('RatingCount'));
+        $form->text('company', __('Company'));
+        $form->number('volume', __('Volume'));
 
         return $form;
     }

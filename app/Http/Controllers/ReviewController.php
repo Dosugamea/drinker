@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use App\Beverage;
-use App\Tag;
 use App\Shared\BeverageFetcher;
 use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\DB;
@@ -61,6 +59,10 @@ class ReviewController extends Controller
         $review->star = $request->reviewRate;
         $review->body = $request->reviewBody;
         $review->save();
+        $stars = $beverage->reviews()->with('star');
+        $beverage->ratingAverage = $stars->avg('star');
+        $beverage->ratingCount = $stars->count('star');
+        $beverage->save();
         // レビュー画像の保存
         if ($request->file('files') != NULL) {
             foreach ($request->file('files') as $index=> $e) {

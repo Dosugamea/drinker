@@ -56,7 +56,11 @@ function startCamera() {
                 //通信が成功したとき
                 .done((res) => {
                     $('#productName')[0].value = res.name;
+                    $('#company')[0].value = res.name;
+                    $('#volume')[0].value = res.name;
                     $('#productName').prop("disabled", res.from !== 'rakuten');
+                    $('#company').prop("disabled", res.from !== 'rakuten');
+                    $('#volume').prop("disabled", res.from !== 'rakuten');
                     $('#janCodeModal').modal('hide');
                     isRequested = false;
                 })

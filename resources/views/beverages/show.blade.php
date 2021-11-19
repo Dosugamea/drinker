@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <h3>{{ $beverage->title }}</h3>
-                                <h4>メーカー名</h4>
+                                <h4>{{ $beverage->company }}</h4>
                             </div>
                             <div class="col-md-4 mt-2 mt-sm-0">
                                 <h5>飲まれた本数: 1本</h5>
@@ -53,12 +53,27 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <p>容量: 1204ml</p>
-                                <p>星: 星星星星 半星 4.5 (評価者数: 1名)</p>
+                                <p>容量: {{ $beverage->volume }}ml</p>
+                                <p>評価:
+                                @for ($i = 1; $i <= $beverage->ratingAverage; $i++)
+                                <i class="fas fa-star text-warning"></i>
+                                @endfor
+                                @if ($beverage->ratingAverage - floor($beverage->ratingAverage) > 0)
+                                    <i class="fas fa-star-half-alt text-warning"></i>
+                                @endif
+                                @for ($i = 1; $i <= 5 - $beverage->ratingAverage; $i++)
+                                    <i class="far fa-star text-warning"></i>
+                                @endfor
+                                {{ $beverage->ratingAverage }} |
+                                <small>評価者数: {{$beverage->ratingCount}} 名</small></p>
                             </div>
                             <div class="col-md-6">
+                                @if ($beverage->sell_start_on != NULL)
                                 <p>発売時期: {{ $beverage->sell_start_on }}</p>
+                                @endif
+                                @if ($beverage->sell_end_on != NULL)
                                 <p>終売時期: {{ $beverage->sell_end_on }}</p>
+                                @endif
                             </div>
                         </div>
                         <p class="mt-4">タグ:</p>
@@ -112,7 +127,7 @@
                             <a href="{{ route('beverages.review', ['review_id'=> $review->id, 'beverage_id'=> $review->beverage->id]) }}" class="text-right mr-2">全文を見る</a>
                         </div>
                         @endforeach
-                        <a class="mt-2 btn btn-primary w-75">もっと見る</a>
+                        <a href="{{ route('beverages.reviews', ['beverage_id'=> $review->beverage->id]) }}" class="mt-2 btn btn-primary w-75">もっと見る</a>
                     </div>
                 </div>
             </div>
