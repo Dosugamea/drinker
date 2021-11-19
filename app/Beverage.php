@@ -25,11 +25,19 @@ class Beverage extends Model
     }
 
     /**
-     * レビューを取得
+     * 試飲記録を取得
     */
     public function reviews()
     {
         return $this->hasMany('App\Review');
+    }
+
+    /**
+     * 購買記録を取得
+    */
+    public function logs()
+    {
+        return $this->hasMany('App\Log');
     }
 
     /**
