@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Beverage;
 
 class BestController extends Controller
 {
@@ -13,7 +15,11 @@ class BestController extends Controller
      */
     public function logs()
     {
-        return view('profile.best.logs');
+        $pageTitle = 'マイベストドリンク(購買記録数順)';
+        $beverages = Beverage::withCount('logs')
+            ->orderBy('logs_count', 'desc')
+            ->paginate(10);
+        return view('profile.best.logs', compact('beverages', 'pageTitle'));
     }
 
     /**
@@ -23,6 +29,12 @@ class BestController extends Controller
      */
     public function reviews()
     {
-        return view('profile.best.reviews');
+        $pageTitle = 'マイベストレビュー(レビュー評価順)';
+        $reviews = \Auth::user()->reviews();
+        $reviews = $reviews->withCount([
+            'votes AS score' => function ($query) {
+                $query->select(DB::raw('SUM(votes) AS score'));
+        }])->orderBy('score', 'desc')->paginate(10);
+        return view('profile.best.reviews', compact('reviews', 'pageTitle'));
     }
 }
