@@ -30,9 +30,6 @@
             <li class="nav-item">
               <a class="nav-link" href="#review" data-toggle="tab">レビュー</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#qa" data-toggle="tab">Q&A</a>
-            </li>
             <li class="nav-item ml-auto">
                 <a class="nav-link bg-primary text-white" href="#">お気に入り</a>
             </li>
@@ -48,13 +45,13 @@
                             </div>
                             <div class="col-md-4 mt-2 mt-sm-0">
                                 <h4>飲まれた本数: 1本</h4>
+                                <h4>レビュー数: 1記事</h4>
                             </div>
                         </div>
-                        <p class="mt-2 mt-sm-0">星: 星星星星 半星 4.5 (評価者数: 1名)</p>
                         <div class="row mt-4">
                             <div class="col-md-6">
-                                <p>カテゴリ: ネタ枠</p>
                                 <p>容量: 1204ml</p>
+                                <p>星: 星星星星 半星 4.5 (評価者数: 1名)</p>
                             </div>
                             <div class="col-md-6">
                                 <p>発売時期: {{ $beverage->sell_start_on }}</p>
@@ -202,24 +199,6 @@
                                 レビュー本文
                             </h6>
                             <h6 class="text-right mr-2">全文を見る</h6>
-                        </div>
-                        <a class="mt-2 btn btn-primary w-75">もっと見る</a>
-                    </div>
-                    <div id="qa" class="tab-pane text-center">
-                        <div class="card">
-                            <div class="card-body">
-                                aaa
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                aaa
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                aaa
-                            </div>
                         </div>
                         <a class="mt-2 btn btn-primary w-75">もっと見る</a>
                     </div>

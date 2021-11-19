@@ -50,18 +50,6 @@ Route::group(['prefix' => 'beverages/{beverage_id}', 'as' => 'beverages.'], func
     Route::get('/reviews', 'BeverageController@reviews')->name('reviews');
     Route::get('/reviews/{review_id}', 'BeverageController@review')->name('review');
     Route::post('/reviews/{review_id}/vote', 'BeverageController@review_vote')->name('review.vote');
-    // 質問
-    Route::resource(
-        '/questions',
-        'BeverageQuestionController',
-        ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
-    );
-    // 質問への回答
-    Route::resource(
-        '/questions/{question_id}/answers',
-        'BeverageAnswerController',
-        ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]
-    );
     // タグ追加
     Route::post('/tags/add', 'BeverageController@addTag')->name('addTag');
     // タグ削除
