@@ -76,6 +76,8 @@ class BeverageFetcher
                         'title' => $product['itemName'],
                         'body' => $product['itemCaption'],
                         'url' => $product['itemUrl'],
+                        'price' => $product['itemPrice'],
+                        'shopName' => $product['shopName'],
                         'beverage_id' => $beverage->id,
                     ]);
                     $beverage->images()->create([

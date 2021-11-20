@@ -33,6 +33,8 @@ class RakutenController extends AdminController
         $grid->column('body', __('Body'));
         $grid->column('url', __('Url'));
         $grid->column('beverage_id', __('Beverage id'));
+        $grid->column('shopName', __('ShopName'));
+        $grid->column('price', __('Price'));
 
         return $grid;
     }
@@ -54,6 +56,8 @@ class RakutenController extends AdminController
         $show->field('body', __('Body'));
         $show->field('url', __('Url'));
         $show->field('beverage_id', __('Beverage id'));
+        $show->field('shopName', __('ShopName'));
+        $show->field('price', __('Price'));
 
         return $show;
     }
@@ -71,6 +75,8 @@ class RakutenController extends AdminController
         $form->textarea('body', __('Body'));
         $form->url('url', __('Url'));
         $form->number('beverage_id', __('Beverage id'));
+        $form->text('shopName', __('ShopName'));
+        $form->number('price', __('Price'));
 
         return $form;
     }
