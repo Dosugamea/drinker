@@ -3,6 +3,7 @@ namespace App\Shared;
 
 use App\Beverage;
 use App\Rakuten;
+use App\Tag;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\LogRequest;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,15 @@ class BeverageFetcher
                 'jan_code' => $request->janCode,
                 'user_id' => $user_id,
             ]);
+            // カテゴリが指定されていたらそれに紐付ける
+            $categoryName = $request->categoryName;
+            if ($categoryName != '') {
+                $tagId = Tag::where([
+                    ['name', '=', $categoryName],
+                    ['type', '=', 0]
+                ])->firstOrFail();
+                $beverage->tags()->attach($tagId, ['user_id' => $user_id]);
+            }
             // 商品検索APIを改めて叩く
             $client = new RakutenRws_Client();
             $client->setApplicationId(config('app.rakuten_id'));

@@ -61,6 +61,7 @@ function startCamera() {
                     $('#productName').prop("disabled", false);
                     $('#productCompany').prop("disabled", false);
                     $('#productVolume').prop("disabled", false);
+                    $('#productCategory').prop("disabled", false);
                     $('#janCodeModal').modal('hide');
                     isRequested = false;
                 })

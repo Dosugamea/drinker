@@ -28,6 +28,7 @@ class LogRequest extends FormRequest
             'productName' => 'required',
             'productCompany' => 'required',
             'productVolume' => 'required',
+            'productCategory' => 'required',
             'logPrice' => 'required',
             'logCount' => 'required',
             'logBody' => 'required'

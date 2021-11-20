@@ -28,6 +28,7 @@ class ReviewRequest extends FormRequest
             'productName' => 'required',
             'productCompany' => 'required',
             'productVolume' => 'required',
+            'productCategory' => 'required',
             'reviewRate' => 'required',
             'reviewTitle' => 'required',
             'reviewBody' => 'required',

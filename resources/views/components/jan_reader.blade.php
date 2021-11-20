@@ -24,7 +24,18 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productVolume">内容量(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <input id="productVolume" name="productVolume" type="number" disabled class="form-control" placeholder="数値のみ ml単位 (例: 500)">
+            <input id="productVolume" name="productVolume" type="number" disabled class="form-control" min="1" max="5000" placeholder="数値のみ (例: 500)">
+    </div>
+</div>
+<div class="form-group row">
+    <label class="col-sm-4 col-form-label" for="productCategory">カテゴリ(初回登録時のみ変更可)</label>
+    <div class="col-sm-8">
+        <select id="productCategory" name="productCategory" disabled class="form-control">
+            <option value="">無し</option>
+            @foreach ( $headerCategory as $category )
+            <option>{{ $category->name }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
 <!-- JANコード読み取りモーダル -->
