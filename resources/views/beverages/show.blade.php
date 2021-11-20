@@ -46,10 +46,12 @@
                                 <h3>{{ $beverage->title }}</h3>
                                 <h4>{{ $beverage->company }}</h4>
                             </div>
+                            <!--
                             <div class="col-md-4 mt-2 mt-sm-0">
                                 <h5>飲まれた本数: 1本</h5>
-                                <h5>レビュー数: 1記事</h5>
+                                <h5>レビュー数: {{ $beverage->reviews_count}}記事</h5>
                             </div>
+                            -->
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-6">
@@ -105,9 +107,6 @@
                                     </h5>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <h6 class="mr-2 my-1">
-                                        スコア: 1
-                                    </h6>
                                     <small class="mr-2">{{ $review->created_at }}</small>
                                 </div>
                             </div>
@@ -127,7 +126,11 @@
                             <a href="{{ route('beverages.review', ['review_id'=> $review->id, 'beverage_id'=> $review->beverage->id]) }}" class="text-right mr-2">全文を見る</a>
                         </div>
                         @endforeach
+                        @isset($review)
                         <a href="{{ route('beverages.reviews', ['beverage_id'=> $review->beverage->id]) }}" class="mt-2 btn btn-primary w-75">もっと見る</a>
+                        @else
+                        <p>まだ レビューはありません</p>
+                        @endisset
                     </div>
                 </div>
             </div>

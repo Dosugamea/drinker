@@ -19,9 +19,11 @@
             </h5>
         </div>
         <div class="col-4 text-right">
+            {{--
             <h6 class="mr-2 my-1">
                 スコア: 1
             </h6>
+            --}}
             <small class="mr-2">{{ $review->created_at }}</small>
         </div>
     </div>

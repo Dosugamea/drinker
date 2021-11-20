@@ -35,6 +35,7 @@
                     <textarea id="reviewBody" name="reviewBody" class="form-control" rows="5" placeholder="もっと評価されるべき"></textarea>
                 </div>
             </div>
+            {{--
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="validatedCustomFile">画像選択(任意)</label>
                 <div class="col-sm-8">
@@ -44,6 +45,7 @@
                     </div>
                 </div>
             </div>
+            --}}
             <button type="submit" class="btn btn-primary btn-lg btn-block my-4">試飲記録を投稿する</button>
         </form>
     </div>
