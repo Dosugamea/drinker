@@ -149,8 +149,8 @@
                 @foreach ( $beverage->rakuten_products->take(5) as $product )
                     <tr>
                         <td><a href="{{ $product->url }}">{{ $product->title }}</a></td>
-                        <td>{{ $product->shop }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->shopName }}</td>
+                        <td>{{ $product->price.'円' }}</td>
                     </tr>
                 @endforeach
             </tbody>
