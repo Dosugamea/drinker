@@ -10,7 +10,6 @@
                         <div class="card-body">
                             <p class="card-text">
                                 <p>{{ $user->name}}</p>
-                                <p>レビュアー Lv1</p>
                             </p>
                         </div>
                     </div>

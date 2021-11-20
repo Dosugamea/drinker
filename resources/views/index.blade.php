@@ -41,8 +41,8 @@
                     <div class="card-body">
                         <h5 class="card-title">統計</h5>
                         <p class="card-text">
-                            <p>ユーザーに飲まれた本数: {{$logs_count}}本(ダム 0基分)</p>
-                            <p>ユーザーの試飲記録数: {{$reviews_count}}記事(同人誌0冊分)</p>
+                            <p>ユーザーに飲まれた本数: {{$logs_count}}本</p>
+                            <p>ユーザーの試飲記録数: {{$reviews_count}}記事</p>
                             <p>登録ユーザー数: {{$users_count}}人</p>
                         </p>
                     </div>
