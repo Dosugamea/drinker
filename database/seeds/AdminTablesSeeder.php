@@ -1,8 +1,5 @@
 <?php
 
-namespace Database\Seeders;
-
-use DB;
 use Illuminate\Database\Seeder;
 
 class AdminTablesSeeder extends Seeder
