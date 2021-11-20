@@ -171,7 +171,7 @@
                     <a href="{{ 'https://shopping.yahoo.co.jp/search?p='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Yahoo</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://wowma.jp/itemlist?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">auPay</a>
+                    <a href="{{ 'https://www.yodobashi.com/?word='.urlencode($beverage->title) }}" class="btn btn-primary w-75">ヨドバシ.com</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
                     <a href="{{ 'https://7net.omni7.jp/search/?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">オムニ7</a>
