@@ -12,8 +12,6 @@ class TagsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-        \DB::statement('ALTER tags DISABLE TRIGGER ALL;');
         \DB::table('tags')->delete();
         
         \DB::table('tags')->insert(array (
@@ -128,7 +126,5 @@ class TagsTableSeeder extends Seeder
                 'user_id' => 1,
             )
         ));
-        
-        \DB::statement('ALTER tags ENABLE TRIGGER ALL');
     }
 }
