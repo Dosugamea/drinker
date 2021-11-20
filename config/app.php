@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        // DBからseedを作成するやつ
+        Orangehill\Iseed\IseedServiceProvider::class,
 
         /*
          * Log service for development
