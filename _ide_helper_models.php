@@ -23,8 +23,14 @@ namespace App{
  * @property string|null $sell_end_on 終売日(おおよその日付)
  * @property int $jan_code JANコード
  * @property int $user_id 登録者のユーザーID
+ * @property float $ratingAverage 平均評価
+ * @property int $ratingCount 評価者数
+ * @property string $company 製造業者
+ * @property int $volume 内容量
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Image[] $images
  * @property-read int|null $images_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Log[] $logs
+ * @property-read int|null $logs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Rakuten[] $rakuten_products
  * @property-read int|null $rakuten_products_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
@@ -32,18 +38,24 @@ namespace App{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
  * @property-read int|null $tags_count
  * @property-read \App\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Vote[] $votes
+ * @property-read int|null $votes_count
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereCompany($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereJanCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereRatingAverage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereRatingCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereSellEndOn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereSellStartOn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Beverage whereVolume($value)
  */
 	class Beverage extends \Eloquent {}
 }
@@ -151,6 +163,8 @@ namespace App{
  * @property string $body 商品説明
  * @property string $url 商品URL
  * @property int $beverage_id 利用先の飲み物ID
+ * @property string $shopName ショップ名
+ * @property int $price 価格
  * @property-read \App\Beverage $beverage
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten newQuery()
@@ -159,6 +173,8 @@ namespace App{
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereBody($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rakuten wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereShopName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Rakuten whereUrl($value)
@@ -210,6 +226,8 @@ namespace App{
  * @property string $name タグの日本語名
  * @property string $name_en タグの英名
  * @property int $user_id 登録者のユーザーID
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Beverage[] $beverages
+ * @property-read int|null $beverages_count
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Tag newQuery()
