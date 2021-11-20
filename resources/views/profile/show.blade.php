@@ -33,7 +33,7 @@
                 '購買記録を付ける' => 'profile.logs.create',
                 '試飲記録一覧を見る' => 'profile.reviews.index',
                 '購買記録一覧を見る' => 'profile.logs.index',
-                'ユーザー設定' => 'profile.config.edit'
+                'ログアウト' => 'profile.logout'
             ]
         ?>
         @foreach ($links as $title => $name)

@@ -75,6 +75,10 @@ Route::middleware('auth')->group(function () {
             Route::get('reviews', 'BestController@reviews')->name('best.reviews');
             Route::get('beverages', 'BestController@beverages')->name('best.beverages');
         });
+        Route::get('/logout', function() {
+            Auth::logout();
+            return Redirect::to('/');
+        })->name('logout');
     });
     // 飲み物情報のAPI問い合わせ
     Route::post('ask/product', 'ProductAskController@ask');
