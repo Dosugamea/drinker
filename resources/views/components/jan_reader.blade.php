@@ -24,7 +24,12 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productVolume">内容量(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
+        <div class="input-group">
             <input id="productVolume" name="productVolume" type="number" disabled class="form-control" min="1" max="5000" placeholder="数値のみ (例: 500)">
+            <div class="input-group-append">
+                <span class="input-group-text">ml</span>
+            </div>
+        </div>
     </div>
 </div>
 <div class="form-group row">
