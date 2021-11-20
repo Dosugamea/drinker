@@ -114,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                {{--
                 <h3 class="mt-4">評価</h3>
                 <select name="rate" class="form-control">
                     <option selected value>未指定</option>
@@ -127,6 +128,7 @@
                     <option value="4.5">4.0~4.5</option>
                     <option value="5.0">4.5~5.0</option>
                 </select>
+                --}}
                 <button type="submit" class="btn btn-primary btn-lg btn-block my-4">絞り込む</button>
             </form>
         </div>
