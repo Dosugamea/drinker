@@ -28,7 +28,9 @@ class ProductAskController extends Controller
                 [
                     'status' => 'success',
                     'from' => 'db',
-                    'name' => $beverage->title
+                    'name' => $beverage->title,
+                    'company' => $beverage->company,
+                    'volume' => $beverage->volume,
                 ]
             );
         }
@@ -89,7 +91,9 @@ class ProductAskController extends Controller
             [
                 'status' => 'success',
                 'from' => 'rakuten',
-                'name' => $beverageName
+                'name' => $beverageName,
+                'company' => $beverageName,
+                'volume' => 0,
             ]
         );
     }

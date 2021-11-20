@@ -10,21 +10,21 @@
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label" for="productName">商品名(初回登録時のみ)</label>
+    <label class="col-sm-4 col-form-label" for="productName">商品名(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
         <input id="productName" name="productName" type="text" disabled class="form-control" placeholder="商品名のみ (例: リプトン ミルクティー)">
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label" for="company">製造会社名(初回登録時のみ)</label>
+    <label class="col-sm-4 col-form-label" for="productCompany">製造会社名(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <input id="company" name="company" type="text" disabled class="form-control" placeholder="社名のみ (例: キリン/サントリー)">
+        <input id="productCompany" name="productCompany" type="text" disabled class="form-control" placeholder="社名のみ (例: キリン/サントリー)">
     </div>
 </div>
 <div class="form-group row">
-    <label class="col-sm-4 col-form-label" for="volume">内容量(初回登録時のみ)</label>
+    <label class="col-sm-4 col-form-label" for="productVolume">内容量(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <input id="volume" name="volume" type="number" disabled class="form-control" placeholder="数値のみ ml単位 (例: 500)">
+        <input id="productVolume" name="productVolume" type="number" disabled class="form-control" placeholder="数値のみ ml単位 (例: 500)">
     </div>
 </div>
 <!-- JANコード読み取りモーダル -->

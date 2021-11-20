@@ -26,6 +26,8 @@ class LogRequest extends FormRequest
         return [
             'janCode' => 'required',
             'productName' => 'required',
+            'productCompany' => 'required',
+            'productVolume' => 'required',
             'logPrice' => 'required',
             'logCount' => 'required',
             'logBody' => 'required'

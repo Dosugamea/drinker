@@ -26,6 +26,8 @@ class ReviewRequest extends FormRequest
         return [
             'janCode' => 'required',
             'productName' => 'required',
+            'productCompany' => 'required',
+            'productVolume' => 'required',
             'reviewRate' => 'required',
             'reviewTitle' => 'required',
             'reviewBody' => 'required',
