@@ -13,7 +13,7 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         
-        \DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        \DB::statement('ALTER tags DISABLE TRIGGER ALL;');
         \DB::table('tags')->delete();
         
         \DB::table('tags')->insert(array (
@@ -129,6 +129,6 @@ class TagsTableSeeder extends Seeder
             )
         ));
         
-        \DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        \DB::statement('ALTER tags ENABLE TRIGGER ALL');
     }
 }
