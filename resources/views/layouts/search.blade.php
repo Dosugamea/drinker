@@ -5,6 +5,8 @@
     {{-- ソート方法 --}}
     <div class="row">
         <div class="col-md-6">
+            <h3 class="text-center">検索結果ページ</h3>
+            {{--
             <ul class="nav nav-pills">
                 <li class="nav-item ml-auto">
                     <a class="nav-link active" href="#">新着順</a>
@@ -16,6 +18,7 @@
                     <a class="nav-link" href="#">評価数順</a>
                 </li>
             </ul>
+            --}}
         </div>
         <div class="col-md-6 mt-2 mt-md-0 text-center">
             <button class="btn btn-secondary mx-auto" data-toggle="modal" data-target="#filterModal">絞り込み方法選択</button>
