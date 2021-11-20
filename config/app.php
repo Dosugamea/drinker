@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         // DBからseedを作成するやつ
-        Orangehill\Iseed\IseedServiceProvider::class,
+        // Orangehill\Iseed\IseedServiceProvider::class,
 
         /*
          * Log service for development
