@@ -59,7 +59,7 @@ class LogController extends Controller
             'user_id' => \Auth::id(),
         ]);
         DB::commit();
-        return redirect('profile.logs.index');
+        return redirect()->route('profile.logs.index');
     }
 
     /**
