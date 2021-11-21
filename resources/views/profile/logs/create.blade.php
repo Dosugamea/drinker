@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="logBody">メモ(任意)</label>
+                <label class="col-sm-4 col-form-label" for="logBody">メモ(必須)</label>
                 <div class="col-sm-8">
                     <textarea class="form-control" name="logBody" rows="5" placeholder="もっと評価されるべき"></textarea>
                 </div>
