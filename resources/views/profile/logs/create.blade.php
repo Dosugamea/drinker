@@ -44,7 +44,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="logBody">メモ(必須)</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" name="logBody" rows="5" placeholder="もっと評価されるべき"></textarea>
+                    <textarea required class="form-control" name="logBody" rows="5" placeholder="もっと評価されるべき"></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-lg btn-block my-4">購買記録を投稿する</button>

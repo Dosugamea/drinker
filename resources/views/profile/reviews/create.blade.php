@@ -25,15 +25,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="reviewTitle">レビュータイトル</label>
+                <label class="col-sm-4 col-form-label" for="reviewTitle">レビュータイトル(必須)</label>
                 <div class="col-sm-8">
-                    <input id="reviewTitle" name="reviewTitle" type="text" class="form-control" placeholder="うまい">
+                    <input required id="reviewTitle" name="reviewTitle" type="text" class="form-control" placeholder="うまい">
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="reviewBody">レビュー本文</label>
+                <label class="col-sm-4 col-form-label" for="reviewBody">レビュー本文(必須)</label>
                 <div class="col-sm-8">
-                    <textarea id="reviewBody" name="reviewBody" class="form-control" rows="5" placeholder="もっと評価されるべき"></textarea>
+                    <textarea required id="reviewBody" name="reviewBody" class="form-control" rows="5" placeholder="もっと評価されるべき"></textarea>
                 </div>
             </div>
             {{--
