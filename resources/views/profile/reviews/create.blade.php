@@ -4,6 +4,7 @@
 <div class="row">
     <div class="col-md-8 mx-auto">
         <h2 class="text-center">試飲記録投稿</h2>
+        <h5 class="text-center">ここではレビューを投稿できます。同じ飲み物にレビューを2回投稿した場合は前回のレビューが上書きされます。</h5>
         <form class="mt-5" method="post" action="{{ route('profile.reviews.store', []) }}" enctype="multipart/form-data">
             @csrf
             @include('components.jan_reader')
