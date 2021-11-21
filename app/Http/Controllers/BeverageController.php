@@ -202,7 +202,7 @@ class BeverageController extends Controller
         // ログインしていない場合はエラー
         $user_id = \Auth::id();
         if ($user_id == NULL) {
-            return back();
+            return redirect()->route('redirectToProvider');
         }
         // 飲み物が存在しない場合はエラー
         $beverage = Beverage::findOrFail($beverage_id);
@@ -226,7 +226,7 @@ class BeverageController extends Controller
         // ログインしていない場合はエラー
         $user_id = \Auth::id();
         if ($user_id == NULL) {
-            return back();
+            return redirect()->route('redirectToProvider');
         }
         // 飲み物が存在しない場合はエラー
         $review = Review::findOrFail($review_id);
