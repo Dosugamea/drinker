@@ -2,7 +2,7 @@
     <label class="col-sm-4 col-form-label" for="janCode">JANコード</label>
     <div class="col-sm-8">
         <div class="input-group">
-            <input type="text" name="janCode" readonly id="janCode" class="form-control" placeholder="JANコードを入力してください">
+            <input required type="text" name="janCode" readonly id="janCode" class="form-control" placeholder="JANコードを入力してください">
             <div class="input-group-append">
                 <button type="button" onclick="startCamera()" class="button btn-primary" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#janCodeModal">カメラ起動</button>
             </div>
@@ -12,20 +12,20 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productName">商品名(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <input id="productName" name="productName" type="text" disabled class="form-control" placeholder="商品名のみ (例: リプトン ミルクティー)">
+        <input required id="productName" name="productName" type="text" disabled class="form-control" placeholder="商品名のみ (例: リプトン ミルクティー)">
     </div>
 </div>
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productCompany">製造会社名(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <input id="productCompany" name="productCompany" type="text" disabled class="form-control" placeholder="社名のみ (例: キリン/サントリー)">
+        <input required id="productCompany" name="productCompany" type="text" disabled class="form-control" placeholder="社名のみ (例: キリン/サントリー)">
     </div>
 </div>
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productVolume">内容量(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
         <div class="input-group">
-            <input id="productVolume" name="productVolume" type="number" disabled class="form-control" min="1" max="5000" placeholder="数値のみ (例: 500)">
+            <input required id="productVolume" name="productVolume" type="number" disabled class="form-control" min="1" max="5000" placeholder="数値のみ (例: 500)">
             <div class="input-group-append">
                 <span class="input-group-text">ml</span>
             </div>
@@ -35,7 +35,7 @@
 <div class="form-group row">
     <label class="col-sm-4 col-form-label" for="productCategory">カテゴリ(初回登録時のみ変更可)</label>
     <div class="col-sm-8">
-        <select id="productCategory" name="productCategory" disabled class="form-control">
+        <select required id="productCategory" name="productCategory" disabled class="form-control">
             <option value="">無し</option>
             @foreach ( $headerCategory as $category )
             <option>{{ $category->name }}</option>

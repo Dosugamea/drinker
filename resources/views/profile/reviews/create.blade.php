@@ -11,7 +11,7 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label" for="reviewRate">評価</label>
                 <div class="col-sm-8">
-                    <select id="reviewRate" name="reviewRate" class="form-control">
+                    <select required id="reviewRate" name="reviewRate" class="form-control">
                         <option>1.0</option>
                         <option>1.5</option>
                         <option>2.0</option>
