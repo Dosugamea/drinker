@@ -8,7 +8,11 @@
         <div class="card rounded-0 bg-white shadow-sm">
             <div class="row">
                 <div class="col-4 my-auto">
+                    @if ($beverage->images->count() >= 1)
                     <img src="{{ $beverage->images()->get()[0]->path }}" class="img-fluid rounded-0">
+                    @else
+                    <img src="https://placehold.jp/24/cc9999/993333/250x250.png?text=%E7%94%BB%E5%83%8F%E3%81%8C%E3%81%82%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93" class="img-fluid rounded-0">
+                    @endif
                 </div>
                 <div class="col-8 my-auto">
                     <a href="{{ route('beverages.beverage', ['beverage_id'=> $beverage->id]) }}">
