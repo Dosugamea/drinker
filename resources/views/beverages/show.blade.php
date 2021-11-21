@@ -151,36 +151,36 @@
             <tbody>
                 @foreach ( $beverage->rakuten_products->take(5) as $product )
                     <tr>
-                        <td><a href="{{ $product->url }}">{{ $product->title }}</a></td>
+                        <td><a target="_blank" href="{{ $product->url }}">{{ $product->title }}</a></td>
                         <td>{{ $product->shopName }}</td>
                         <td>{{ $product->price.'円' }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <a class="btn btn-primary w-75" href="{{ 'https://search.rakuten.co.jp/search/mall/'.urlencode($beverage->title) }}">もっと探す</a>
+        <a target="_blank" class="btn btn-primary w-75" href="{{ 'https://search.rakuten.co.jp/search/mall/'.urlencode($beverage->title) }}">もっと探す</a>
     </div>
     <div class="col-md-6 text-center my-auto">
         <h3 class="mt-4 mt-sm-0">この飲料を買う(その他)</h3>
         <div>
             <div class="row justify-content-around">
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://www.amazon.co.jp/s?k='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Amazon</a>
+                    <a target="_blank" href="{{ 'https://www.amazon.co.jp/s?k='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Amazon</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://shopping.yahoo.co.jp/search?p='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Yahoo</a>
+                    <a target="_blank" href="{{ 'https://shopping.yahoo.co.jp/search?p='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Yahoo</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://www.yodobashi.com/?word='.urlencode($beverage->title) }}" class="btn btn-primary w-75">ヨドバシ.com</a>
+                    <a target="_blank" href="{{ 'https://www.yodobashi.com/?word='.urlencode($beverage->title) }}" class="btn btn-primary w-75">ヨドバシ.com</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://7net.omni7.jp/search/?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">オムニ7</a>
+                    <a target="_blank" href="{{ 'https://7net.omni7.jp/search/?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">オムニ7</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://jp.mercari.com/search?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">メルカリ</a>
+                    <a target="_blank" href="{{ 'https://jp.mercari.com/search?keyword='.urlencode($beverage->title) }}" class="btn btn-primary w-75">メルカリ</a>
                 </div>
                 <div class="col-5 mx-1 my-1">
-                    <a href="{{ 'https://www.google.com/search?tbm=shop&q='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Google</a>
+                    <a target="_blank" href="{{ 'https://www.google.com/search?tbm=shop&q='.urlencode($beverage->title) }}" class="btn btn-primary w-75">Google</a>
                 </div>
             </div>
         </div>
@@ -190,6 +190,7 @@
     <div class="col-md-3 mx-1 my-1">
         <a
             class="btn btn-primary w-75"
+            target="_blank"
             href="{{'https://twitter.com/share?url='.urlencode(request()->fullUrl()).'&text='.urlencode('[Drinker] '.$beverage->title.'のレビュー評価はこちら!')}}">
             Twitterでシェア
         </a>
@@ -197,6 +198,7 @@
     <div class="col-md-3 mx-1 my-1">
         <a
             class="btn btn-primary w-75"
+            target="_blank"
             href="{{'https://line.me/R/msg/text/?'.htmlspecialchars('[Drinker] '.$beverage->title.'のレビュー評価を見てみよう!')}}">
             LINEでシェア
         </a>

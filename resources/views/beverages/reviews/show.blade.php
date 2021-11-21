@@ -77,6 +77,7 @@
             <div class="row justify-content-around text-center mt-4 mb-2">
                 <div class="col-md-3 mx-1 my-1">
                     <a
+                        target="_blank"
                         class="btn btn-primary w-75"
                         href="{{'https://twitter.com/share?url='.urlencode(request()->fullUrl()).'&text='.urlencode('[Drinker] '.$review->beverage->title.'のレビュー評価はこちら!')}}">
                         Twitterでシェア
@@ -84,6 +85,7 @@
                 </div>
                 <div class="col-md-3 mx-1 my-1">
                     <a
+                        target="_blank"
                         class="btn btn-primary w-75"
                         href="{{'https://line.me/R/msg/text/?'.htmlspecialchars('[Drinker] '.$review->beverage->title.'のレビュー評価を見てみよう!')}}">
                         LINEでシェア
