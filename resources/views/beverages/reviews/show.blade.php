@@ -53,6 +53,9 @@
                             <button type="submit" class="btn btn-primary">↓</button>
                         </form>
                     </div>
+                    <div class="row justify-content-center">
+                        <small>※評価は変更のみ</small>
+                    </div>
                 </div>
             </div>
             <div class="row">
