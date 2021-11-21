@@ -8,6 +8,7 @@ use App\Http\Requests\ReviewRequest;
 use App\Http\Requests\LogRequest;
 use Illuminate\Support\Facades\Auth;
 use RakutenRws_Client;
+use Illuminate\Support\Facades\DB;
 
 class BeverageFetcher
 {
@@ -41,6 +42,7 @@ class BeverageFetcher
      */
     private function fetchBeverage($request)
     {
+        DB::beginTransaction();
         // バリデーションは 既にされている
         // ドリンクが存在するなら取得
         $beverage = Beverage::where('jan_code', $request->janCode)->first();
@@ -78,6 +80,7 @@ class BeverageFetcher
                 'genreId' => 100316
             ));
             if (!$response->isOk()) {
+                DB::rollback();
                 return NULL;
             }
             if ($response->getData()['count'] != 0) {
@@ -96,6 +99,9 @@ class BeverageFetcher
                         'user_id' => $user_id
                     ]);
                 }
+            } else {
+                DB::rollback();
+                return NULL;
             }
         }
         return $beverage;

@@ -41,15 +41,14 @@ class ReviewController extends Controller
     public function store(ReviewRequest $request)
     {
         // バリデーションは 既にされている
-        DB::beginTransaction();
         // ドリンクを取得
         $fetcher = new BeverageFetcher;
         $beverage = $fetcher->fetchByReviewRequest($request);
         $user_id = \Auth::id();
         if($beverage == NULL) {
-            DB::rollback();
             return back();
         }
+        DB::beginTransaction();
         // 既にレビュー投稿済みであれば上書きする(暗黙の仕様)
         $review = Review::firstOrNew([
             'user_id' => $user_id,
